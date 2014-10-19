@@ -1,0 +1,1889 @@
+\documentclass{jhwhw}
+\usepackage{color}
+%\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{cancel}
+%\everymath{\displaystyle}
+%\usepackage{bm}
+%\usepackage{setspace}
+%\usepackage{verbatim}
+%\usepackage[lmargin=2.5cm, rmargin=2.5cm,tmargin=3cm,bmargin=2.5cm]{geometry}
+%
+% Hyperlink styling
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue
+}
+%
+% This allows you to draw a box around things.
+% Wrap whateve you want a box around with:
+%\Aboxed{Stuff you want boxed}
+%\def\@Aboxed#1&#2\ENDDNE{%
+%  \settowidth\@tempdima{$\displaystyle#1{}$}%
+%  \addtolength\@tempdima{\fboxsep}%
+%  \addtolength\@tempdima{\fboxrule}%
+%  \global\@tempdima=\@tempdima
+%  \kern\@tempdima
+%  &
+%  \kern-\@tempdima
+%  \fcolorbox{red}{yellow}{$\displaystyle #1#2$}
+%}
+%
+% Part of AMS Math
+% Lets you create a log-like trace function
+\DeclareMathOperator{\Tr}{Tr}
+%
+% Author and title
+\author{Bret Comnes}
+\title{QM619 Homework 2}
+
+\begin{document}
+\problem{Commutators in the Heisenberg Picture}
+Let $\hat{t}$ be the coordinate operator for a free particle in one dimension in the \underline{Heisenberg Picture}.  Evaluate the following commutator:
+
+\begin{equation}
+	\left[\hat{x}(t),\hat{x}(0) \right]
+\end{equation}
+
+\solution
+In the Heisenberg picture, the wave functions are stationary in time, and the operators evolve with time (whereas its the other way around in the S-Picture).  Using the Heisenberg Equation of Motion,
+
+\begin{align}
+	\label{eq:heom}
+	i \hbar \frac{d \hat{A}_H}{dt} &= [\hat{A}_H, \hat{H}_H] + i \hbar \left( \frac{
+	\partial \hat{A}}{\partial t} \right)_H
+\end{align}
+with the Hamiltonian for the free particle
+\begin{align}
+	\hat{H} = \frac{\hat{p}^2}{2m}
+\end{align}
+we can find $\hat{x(t)}$ and then demonstrate the desired commutator relationship.
+
+\begin{align}
+	i \hbar \frac{d \hat{x}}{dt} &= [\hat{x}, \hat{H}_H] + i \hbar \left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H \\
+	i \hbar \frac{d \hat{x}}{dt} &= [\hat{x}, \frac{\hat{p}^2}{2m}] + i \hbar \left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H \\
+	\frac{d \hat{x}}{dt} &= \frac{1}{i \hbar 2 m }[\hat{x}, \hat{p}^2] + \left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H \\
+	\frac{d \hat{x}}{dt} &= \frac{1}{i \hbar 2 m }\left([\hat{x}, \hat{p}]\hat{p} + \hat{p}[\hat{x}, \hat{p}] \right) + \left( \frac{
+	\partial \hat{x}}{\partial \hat{t}} \right)_H \\
+	\frac{d \hat{x}}{dt} &= \frac{1}{i \hbar 2 m }\left(2 i \hbar \hat{p} \right) + \left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H \\
+	\frac{d \hat{x}}{dt} &= \frac{\hat{p}}{m } + \left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H
+\end{align}
+Since $\left( \frac{\partial \hat{x}}{\partial t} \right)_H$ does not have a direct dependance on time, this term goes to zero, leaving a quick separation of variables to solve for $\hat{x}(t)$.
+\begin{align}
+	\frac{d \hat{x}}{dt} 
+	&= 
+	\frac{\hat{p}}{m} \\
+	d \hat{x}
+	&=
+	\frac{p}{m}dt \\
+	\int d \hat{x}
+	&=
+	\int\frac{\hat{p}}{m}dt \\
+	\hat{x}(t) + C
+	&=
+	\frac{\hat{p}}{m}t \\
+	\Aboxed{
+	\hat{x}(t)
+	&=
+	\frac{\hat{p}}{m}t + \hat{x}(0) }
+\end{align}
+We can recognize $C$ as $\hat{x}(0)$, and now we have our time dependent operator, which will allow us to perform the commutation relationship.  
+\begin{align}
+	[\hat{x}(t),\hat{x}(0)] 
+	&=
+	\left(\frac{\hat{p}}{m}t + \hat{x}(0)\right)\hat{x}(0)
+	-
+	\hat{x}(0)\left(\frac{\hat{p}}{m}t + \hat{x}(0)\right)
+	\\
+	&=
+	\frac{\hat{p}}{m}t\hat{x}(0) + \hat{x}^2(0)
+	-
+	\hat{x}(0)\frac{\hat{p}}{m}t - \hat{x}^2(0)
+	\\
+	&=
+	\frac{\hat{p}}{m}t\hat{x}(0)
+	-
+	\hat{x}(0)\frac{\hat{p}}{m}t
+	\\
+	&=
+	\frac{t}{m}
+	(\hat{p}\hat{x}(0)
+	-
+	\hat{x}(0)\hat{p})
+	\\
+	&=
+	\frac{t}{m}
+	[\hat{p},\hat{x}(0)]
+	\\
+	\Aboxed{
+	[\hat{x}(t),\hat{x}(0)] 
+	&=i \hbar\frac{t}{m}
+	}
+\end{align}
+
+\pagebreak[4]
+
+\problem{Schr\"{o}dinger vs Heisenberg Picture}
+Using the \underline{one-dimensional simple harmonic oscillator} as an example, illustrate the differences between the Schr\"{o}dinger (S) and the Heisenberg (H) picture by completing the following:
+
+\underline{\textbf{In the S-Picture:}}
+
+\part
+Write down the fundamental equation of motion for the time evolution of a general state vector.
+\solution
+	We simply pull a Griffiths page one and write down the TDSE:
+	\begin{equation}
+		\label{eq:tdse}
+		i \hbar \frac{\partial}{\partial t}\ket{\psi} = H \ket{\psi}
+	\end{equation}
+\part
+Find an expression for the time evolution operator $\hat{V}(t,t_0)$ and hence determine for the time evolution of a general state vector.
+\solution
+We start by introducing the time evolution operator such that
+\begin{equation}
+	\ket{\psi(t)} = \hat{V}(t,t_0)\ket{\psi(t0)}
+\end{equation}
+which, along with Equation~\eqref{eq:tdse}, we get
+\begin{equation}
+	i \hbar \frac{\partial}{\partial t} \hat{V}(t,t_0) = H \hat{V}(t,t_0)
+\end{equation}
+where
+\begin{equation}
+	\lim_{t \to t_0} \hat{V}(t,t_0) = 1
+\end{equation}
+At this point we can use separation of variables to solve for an expression for $\hat{V}(t,t_0)$.
+\begin{align}
+	i \hbar \frac{\partial}{\partial t} \hat{V}(t,t_0) 
+	&= 
+	H \hat{V}(t,t_0) 
+	&&
+	\\
+	\int i \hbar \frac{\partial(\hat{V}(t,t_0))}{\hat{V}(t,t_0)}
+	&= 
+	\int H \partial t 
+	&&
+	\\
+	i \hbar \ln (\hat{V}(t,t_0))
+	&=
+	H(t + c)
+	& \text{where }c &= t_0
+	\\
+	e^{\ln{(\hat{V}(t,t_0))}}
+	&=
+	e^{H(t - t_0)\frac{1}{i \hbar}}
+	&&
+	\\
+	\Aboxed{
+	\hat{V}(t,t_0) = e^{\frac{-i H (t - t_0)}{\hbar}}
+	}
+	&&
+\end{align}
+\part
+Comment on the time evolution of the dynamic variables $\hat{x}$ and $\hat{p}$.
+\solution
+In the S-Picture, operators vary with time, where the wave function does not! 
+
+\part
+\underline{\textbf{Now In the H-Picture}}
+
+Obtain the equations of motion for the time evolution of the dynamic variables $\hat{x}$ and $\hat{p}$.
+\solution
+Similar to Problem 1, we can run our operators through the Heisenberg Equation of Motion seen in Equation~\eqref{eq:heom}.  We must note that the Hamiltonian operator is a little different for the SHO compared to the free particle:
+\begin{equation}
+	\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2
+\end{equation}
+Lets find $\hat{x}$ first.  Since there is no explicate time dependance on time for $\hat{x}$, we can argue that $\frac{\partial \hat{x}}{\partial t}$ goes to $0$ right out of the gate.
+\begin{align}
+	i \hbar \frac{d \hat{x}}{dt} 
+	&= 
+	[\hat{x}, \hat{H}_H] + i \hbar \cancelto{0}{\left( \frac{
+	\partial \hat{x}}{\partial t} \right)_H}
+	\\
+	\frac{d \hat{x}}{dt} 
+	&=
+	\frac{1}{i \hbar}
+	[\hat{x}, \frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2]
+	\\
+	&=
+	\frac{1}{i \hbar} \left(
+	\hat{x}\left(\frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2 \right) - \left(\frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2\right)\hat{x}
+	\right)
+	\\
+	&=
+	\frac{1}{i \hbar} \left(
+	\frac{\hat{x}\hat{p}^2}{2m} + \cancelto{0}{\frac{1}{2} m \omega^2 \hat{x}^3} - \frac{\hat{p}^2 \hat{x}}{2m} - \cancelto{0}{\frac{1}{2} m \omega^2 \hat{x}^3}
+	\right)
+	\\
+	&=
+	\frac{1}{i \hbar 2 m} \left(\hat{x}\hat{p}^2 - \hat{p}^2 \hat{x}\right)
+	\\
+	&=
+	\frac{1}{i \hbar 2 m} (\cancelto{i\hbar}{[\hat{x},\hat{p}]}\hat{p} + \hat{p}\cancelto{i\hbar}{[\hat{x},\hat{p}]})
+	& \text{by distributivity :)}
+	\\
+	\Aboxed{\frac{d \hat{x}}{dt} 
+	&=
+	\frac{\hat{p}}{m}}
+\end{align}
+
+We can do the same thing for $\hat{p}$, making the same argument about $\frac{\partial \hat{p}}{\partial t}$ going to $0$.
+\begin{align}
+	i \hbar \frac{d \hat{p}}{dt} 
+	&= 
+	[\hat{p}, \hat{H}_H] + i \hbar \cancelto{0}{\left( \frac{
+	\partial \hat{p}}{\partial t} \right)_H}
+	\\
+	\frac{d \hat{p}}{dt}
+	&=
+	\frac{1}{i \hbar} [\hat{p}, \frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2]
+	\\
+	&=
+	\frac{1}{i \hbar}
+	\hat{p} \left(\frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2\right)
+	- 
+	\left(\frac{\hat{p}^2}{2m} + \frac{1}{2} m \omega^2 \hat{x}^2 \right)\hat{p}
+	\\
+	&=
+	\frac{1}{i \hbar} \left(
+	 \cancelto{0}{\frac{\hat{p}^3}{2m}}+ \frac{1}{2} m \omega^2 \hat{p} \hat{x}^2
+	- 
+	\cancelto{0}{\frac{\hat{p}^3}{2m}} - \frac{1}{2} m \omega^2 \hat{x}^2 \hat{p}
+	\right)
+	\\
+	&=
+	\frac{m \omega^2}{i \hbar 2} \left(
+	\hat{p} \hat{x}^2
+	- 
+	\hat{x}^2 \hat{p}
+	\right)
+	\\
+	&=
+	\frac{m \omega^2}{i \hbar 2} 
+	[\hat{p},\hat{x}^2]
+	\\
+	&=
+	\frac{m \omega^2}{i \hbar 2} 
+	(\cancelto{-i \hbar}{[\hat{p},\hat{x}]}\hat{x} + \hat{x}\cancelto{-i \hbar}{[\hat{p},\hat{x}]})
+	\\
+	\frac{d \hat{p}}{dt}
+	&=
+	- m \omega^2 \hat{x}
+	\\
+	\Aboxed{\frac{d \hat{p}}{dt}
+	&=
+	- \beta \hat{x} & \text{where }\beta &= m \omega^2 }
+\end{align}
+
+\pagebreak[4]
+
+\part
+Solve the above equations in part (d)
+\solution
+We need to solve the following differential equation:
+\begin{align}
+    \dot{x} &= \frac{p}{m}
+    \\
+    \dot{p} &=-\beta x
+\end{align}
+which happens to be solvable using the general solution to Hook's law:
+\begin{equation}
+    x(t) = A \sin(\omega t) + B \cos(\omega t)
+\end{equation}
+where
+\begin{equation}
+    \label{eq:w}
+    \omega^2 = \frac{k}{m} = \frac \beta m
+\end{equation}
+We can solve for $B$ right off the bat by setting $t = 0$ in $x(t)$:
+\begin{align}
+    x(0) &= \cancelto{0}{A \sin(0)} + B \cancelto{1}{\cos(0)}
+    \\
+    x(0) &= B
+    \\
+    \label{eq:xta}
+    x(t) &= A \sin(\omega t) + x_0 \cos(\omega t)
+\end{align}
+Next we relate the two equations by solving for $\dot{p}$ and integrating:
+\begin{align}
+    \dot{p} &= -\beta x(t) = -\beta(A \sin(\omega t) + x_0 \cos(\omega t))
+    \\
+    \int\dot{p} dt &= \int -\beta A \sin(\omega t) dt +  \int x_0 \cos(\omega t))dt
+    \\
+    \label{eq:pta}
+    p &= \frac{\beta A}{\omega} \cos{\omega t} - \frac{\beta x_0}{\omega}\sin{\omega t} + C
+\end{align}
+Now lets find $A$ by setting $t = 0$ in $p(t)$ and dissolving $C$ into $A$:
+\begin{align}
+    p(0) &= \frac{\beta A}{\omega} \cancelto{1}{\cos{0}} - \cancelto{0}{\frac{\beta x_0}{\omega}\sin{0}} + C
+    \\
+    p(0) &= \frac{\beta A}{\omega}
+    \\
+    \label{eq:a}
+    A &= \frac{p_0 \omega}{\beta}
+\end{align}
+Plugging A~\eqref{eq:a} back into Equation~\eqref{eq:xta} and \eqref{eq:pta}:
+\begin{align}
+    x(t) &= \frac{p_0 \omega}{\beta} \sin(\omega t) + x_0 \cos(\omega t)
+    \\
+    p(t) &= p_0 \cos{\omega t} - \frac{\beta x_0}{\omega}\sin{\omega t}
+\end{align}
+Plugging in Equation~\eqref{eq:w} we get the final solution:
+\begin{align}
+    \Aboxed{
+    x(t) &= \frac{p_0}{\sqrt{\beta m}} \sin(\sqrt{\frac{\beta}{m}} t) + x_0 \cos(\sqrt{\frac{\beta}{m}} t)
+    }
+    \\
+    \Aboxed{
+    p(t) &= p_0 \cos{\sqrt{\frac{\beta}{m}} t} - \sqrt{\beta m} x_0 \sin{\sqrt{\frac{\beta}{m}} t}
+    }
+\end{align}
+
+\part
+Comment on both the classical correspondence and the time evolution of the quantum state in this picture.
+\solution
+The solutions we find here are the same solutions we find in classical mechanics for the SHO!  The wave function does not evolve in time, but rather the operators do.
+
+\pagebreak[4]
+
+\problem{Density Matrix for spin $1/2$ particles}
+As shown in the Lecture Notes, the eigenvalue equation for spin-$1/2$ particles can indeed be given by the Pauli matrices as follows:
+
+\begin{align}
+	\label{eq:smatrix}
+	S\ket{\chi} &= \frac{\hbar}{2}\sigma \ket{\chi}
+\end{align}
+where
+\begin{align}
+	\sigma_x &= 
+	\begin{pmatrix}
+		0	&	1	\\
+		1	&	0
+	\end{pmatrix}
+	&
+	\sigma_x &= 
+	\begin{pmatrix}
+		0	&	-i	\\
+		i	&	0
+	\end{pmatrix}
+	&
+	\sigma_x &= 
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}
+\end{align}
+
+\part
+Show that the above spin eigenvectors along each of the x and z directions with eigenvalues $+ \frac{\hbar}{2}$ and $-\frac{\hbar}{2}$ are given by:
+\begin{align}
+	\ket{\chi_z +} &\equiv 
+	\ket{+} = 
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}
+	&
+	\ket{\chi_z -} &\equiv 
+	\ket{-} = 
+	\begin{pmatrix}
+		0 \\
+		1
+	\end{pmatrix}
+	\\
+	\ket{\chi_x +} &= 
+	\frac{1}{\sqrt{2}}(\ket{+} + \ket{-}) = 
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		1
+	\end{pmatrix}
+	&
+	\ket{\chi_x -} &= 
+	\frac{1}{\sqrt{2}}(\ket{+} - \ket{-}) = 
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		-1
+	\end{pmatrix}
+	\label{eq:xsmatrix}
+\end{align}
+\solution
+Since we know the eigenvalues already, all we have to do is solve a really basic eigenvalue problem and then we will have shown how to get our spin eigenvectors.  
+
+In the Z direction, the eigenvalue problem can be reduced to the following form:
+\begin{equation}
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	=
+	\lambda
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+\end{equation}
+Solving the characteristic equation
+\begin{align}
+	\left|\underline{\underline{M}} - \lambda \underline{\underline{I}}\right| &= 0
+	\\
+	\begin{vmatrix}
+		1-\lambda	&	0		\\
+		0			&	-1 - \lambda
+	\end{vmatrix}
+	&=
+	0
+	\\
+	(1 -\lambda)(-1 - \lambda) = -1 - \lambda^2 &= 0
+	\\
+	\lambda &= \pm 1
+\end{align}
+The sign on $\lambda$ represents our spin up and spin down state.  
+
+When $\lambda = +1$:
+\begin{align}
+	&&\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&=
+	+1
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&&
+	\\
+	 a &= +a &&& -b &= b
+\end{align}
+These results, under normalization, yield:
+\begin{align}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}_+
+	&=
+	\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}
+\end{align}
+
+Similarly when $\lambda = -1$
+\begin{align}
+	&&\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&=
+	-1
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&&
+	\\
+	 a &= -a &&& -b &= -b
+\end{align}
+Again, under normalization, these results yield our eigenvectors:
+\begin{align}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}_-
+	&=
+	\begin{pmatrix}
+		0	\\
+		1
+	\end{pmatrix}
+\end{align}
+Putting these back into Equation~\eqref{eq:smatrix}, yields the following spin eigenvectors in the $z$ direction.
+\begin{align}
+	\Aboxed{
+	\ket{\chi_z +} &\equiv 
+	\ket{+} = 
+	\begin{pmatrix}
+		1 \\
+		0
+	\end{pmatrix}}
+	&
+	\Aboxed{
+	\ket{\chi_z -} &\equiv 
+	\ket{-} = 
+	\begin{pmatrix}
+		0 \\
+		1
+	\end{pmatrix}}
+\end{align}
+
+Similarly in the x-direction, we solve our characteristic equation:
+\begin{align}
+	\begin{pmatrix}
+		0	&	1	\\
+		1	&	0
+	\end{pmatrix}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&=
+	\lambda
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	\\
+	\left|\underline{\underline{M}} - \lambda \underline{\underline{I}}\right| &= 0
+	\\
+	\begin{vmatrix}
+		0-\lambda	&	1		\\
+		1			&	0 - \lambda
+	\end{vmatrix}
+	&=
+	0
+	\\
+	(-\lambda)(-\lambda)-1 &= 0
+	\\
+	\lambda &= \pm 1
+\end{align}
+We again find our eigenvectors for the given eigenvalues.
+
+For $\lambda = +1$:
+ \begin{align}
+ 	\begin{pmatrix}
+ 		0	&	1	\\
+ 		1	&	0
+ 	\end{pmatrix}
+ 	\begin{pmatrix}
+ 		a	\\
+ 		b
+ 	\end{pmatrix}
+ 	&=
+ 	+1
+ 	\begin{pmatrix}
+ 		a	\\
+ 		b
+ 	\end{pmatrix}
+ 	\\
+ 	 a &= b
+ \end{align}
+Again, we find the the eigenvector
+\begin{align}
+ 	\begin{pmatrix}
+ 		a	\\
+ 		b
+ 	\end{pmatrix}_+
+ 	&=
+ 	\begin{pmatrix}
+ 		a	\\
+ 		a
+ 	\end{pmatrix}
+ \end{align}
+ however under normalization
+ \begin{align}
+ 	\sqrt{a^2+a^2} &= 1
+	\\
+	a = \frac{1}{\sqrt{2}}
+ \end{align}
+ resulting in our desired eigenvector seen in Equation~\eqref{eq:xsmatrix}
+ \begin{align}
+	 \Aboxed{
+	\ket{\chi_x +} = 
+	\frac{1}{\sqrt{2}}(\ket{+} + \ket{-}) = 
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		1
+	\end{pmatrix}}
+ \end{align}
+
+Now for $\lambda = -1$:
+\begin{align}
+	\begin{pmatrix}
+		0	&	1	\\
+		1	&	0
+	\end{pmatrix}
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	&=
+	-1
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}
+	\\
+	\begin{pmatrix}
+		b	\\
+		a
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+		-a	\\
+		-b
+	\end{pmatrix}
+	\\
+	\begin{pmatrix}
+		a	\\
+		b
+	\end{pmatrix}_-
+	&=
+	\begin{pmatrix}
+		a	\\
+		-a
+	\end{pmatrix}
+\end{align}
+Under normalization:
+\begin{align}
+	\sqrt{(a)^2+(-a)^2} &= 1 \\
+	a = \frac{1}{\sqrt{2}}
+\end{align}
+which brings us to the final eigenvector we seek:
+\begin{align}
+	\Aboxed{
+	\ket{\chi_x -} &= 
+	\frac{1}{\sqrt{2}}(\ket{+} - \ket{-}) = 
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		-1
+	\end{pmatrix}
+	}
+\end{align}
+\pagebreak[4]
+
+\part
+Show that for a pure ensemble of a completely polarized beam of $1/2$ particles with spin up along the z-direction, i.e. $\ket{\chi_z +} = \ket{+}$, the density matrix can be expressed as:
+\begin{equation}
+	\rho_z =
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}
+\end{equation}
+\solution
+We need to use the definition of the density operator from equation (32.7) in the qm-619 notes,
+\begin{equation}
+	\label{eq:density}
+	\rho \equiv \sum \limits_i f_i \rho^{(i)}
+\end{equation}
+where
+\begin{equation}
+	\rho^{(i)} \equiv \ket{\Psi^{(i)}}\bra{\Psi^{(i)}}
+\end{equation}
+and
+\begin{equation}
+	f_i \equiv \frac{N_i}{N}
+\end{equation}
+where $N$ is the total number of identical particles making up the ensemble and $N_i$ is the number of particles in state $i$ within the ensemble.
+
+For an ensemble of $1/2$ particles all with spin up, Equation~\eqref{eq:density} reduces to:
+\begin{align}
+	\rho = \rho^{(z+)} &= \ket{+}\bra{+}
+	\\
+	\rho^{(z)}
+	&=
+	\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}
+	\\
+	\Aboxed{	\rho^{(z)}
+	&=
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}}}
+\end{align}
+
+\part
+Same problem as in (b), but now for a pure state $\ket{\chi_x +} = \frac{1}{\sqrt{2}}(\ket{+} + \ket{-})$, show that
+\begin{equation}
+	\rho_x = \frac{1}{2}
+	\begin{pmatrix}
+		1	&	1	\\
+		1	&	1
+	\end{pmatrix}
+\end{equation}
+\solution
+This is very similar to the previous part. 
+\begin{align}
+	\rho = \rho^{(x)} &= \ket{\chi_x+}\bra{\chi_x+}
+	\\
+	\rho^{(x)} &= \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1	\\
+		1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	1
+	\end{pmatrix}
+	\\
+	\Aboxed{\rho^{(x)} &= \frac{1}{2}
+	{\begin{pmatrix}
+		1	&	1	\\
+		1	&	1
+	\end{pmatrix}}}
+\end{align}
+
+\part
+Comment on the values for $\Tr(\rho)$ and $\Tr(\rho^2)$ in (b) and (c), respectively.
+\solution
+\begin{align}
+\Aboxed
+{\Tr(\rho_{(z)})	&= 
+	\Tr{{\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}}} = 1+0= 1}
+	\\
+	\Aboxed{\Tr(\rho^2_{(z)})	&= 
+	\Tr{
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}}}^2 
+	= 
+	\Tr{{\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}}} = 1+0 = 1}
+	\\
+	\Aboxed{\Tr(\rho_{(x)})	&= 
+		\Tr\frac{1}{2}{{\begin{pmatrix}
+			1	&	1	\\
+			1	&	1
+		\end{pmatrix}}} = \frac{1}{2} + \frac{1}{2} = 1}
+	\\
+	\Aboxed{\Tr(\rho^2_{(x)})	&= 
+	\Tr \left(
+	\left(\frac{1}{2}{{\begin{pmatrix}
+		1	&	1	\\
+		1	&	1
+	\end{pmatrix}}}\right)^2\right) 
+	=
+	\Tr 
+	{{\begin{pmatrix}
+		\frac{1}{2}	&	\frac{1}{2}	\\
+		\frac{1}{2}	&	\frac{1}{2}
+	\end{pmatrix}}}
+	\cdot
+	{{\begin{pmatrix}
+		\frac{1}{2}	&	\frac{1}{2}	\\
+		\frac{1}{2}	&	\frac{1}{2}
+	\end{pmatrix}}}
+	=
+	\Tr{{\begin{pmatrix}
+		\frac{1}{2}	&	\frac{1}{2}	\\
+		\frac{1}{2}	&	\frac{1}{2}
+	\end{pmatrix}}}
+	=
+	\frac{1}{2}+\frac{1}{2}
+	= 1}
+\end{align}
+
+They are all 1!
+
+\part
+For a completely unpolarized beam of spin $1/2$ particles, show that
+\begin{align}
+	\rho_x &=
+	\frac{1}{2}
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	1
+	\end{pmatrix}
+	&
+	\rho_x &=
+	\frac{1}{4}
+	\left[
+	\begin{pmatrix}
+		1	&	1	\\
+		1	&	1
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		1	&	-1	\\
+		-1	&	1
+	\end{pmatrix}
+	\right]
+	&
+	\rho_z &= \rho_x
+\end{align}
+\solution
+For an unpolarized beam, we have an equal chance of finding particles in the spin up or spin down state, so $\frac{N_i}{N} = \frac{1}{2}$ for $i = \pm$.  Looking at $\rho^{(z\pm)}$ first:
+\begin{align}
+	\rho = \frac{1}{2}\rho^{(z+)} + \frac{1}{2}\rho^{(z-)} &= \frac{1}{2}(( \ket{+}\bra{+}) + (\ket{-}\bra{-} ))
+	\\
+	&=
+	\frac{1}{2} \left( 
+	\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	0
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		0	\\
+		1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0	&	1
+	\end{pmatrix}
+	\right)
+	=
+	\frac{1}{2}\left(
+	\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		0	&	0	\\
+		0	&	1
+	\end{pmatrix}
+	\right)
+	\\
+	\Aboxed{	\rho^{(z\pm)}
+	&=
+	\frac{1}{2}
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	1
+	\end{pmatrix}}}
+	\label{eq:pzi}
+\end{align}
+Similarly looking $\rho^{x\pm}$:
+\begin{align}
+	\rho = \frac{1}{2}\rho^{(x+)} + \frac{1}{2}\rho^{(x-)} &= \frac{1}{2}(( \ket{\chi_x+}\bra{\chi_x+}) + (\ket{\chi_x-}\bra{\chi_x-} )) 
+	\\
+	&=
+	\frac{1}{2}
+	\frac{1}{\sqrt{2}}
+	\frac{1}{\sqrt{2}}
+	\left(
+	{\begin{pmatrix}
+		1	\\
+		1
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	1
+	\end{pmatrix}}
+	+
+	{\begin{pmatrix}
+		1	\\
+		-1
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	-1
+	\end{pmatrix}}
+	\right)
+	\\
+	\Aboxed{
+	\rho^{x\pm}
+	&=
+	\frac{1}{4}
+	\left[
+	{\begin{pmatrix}
+		1	&	1	\\
+		1	&	1
+	\end{pmatrix}}
+	+
+	{\begin{pmatrix}
+		1	&	-1	\\
+		-1	&	1
+	\end{pmatrix}}
+	\right]}
+	\label{eq:pxi}
+\end{align}
+Which allows us to conclude
+\begin{equation}
+	\boxed{\rho^{z\pm} = \rho^{x\pm}}
+\end{equation}
+
+\part
+Show also that in the case of (e): the quantum ensemble average of each of the spin components of the beam is zero, i.e.: 
+\begin{equation}
+	\braket{\bar{S_x}}=\braket{\bar{S_y}}=\braket{\bar{S_z}}=0
+\end{equation}
+\solution
+Calculating the expectation value of $S$ is simple.  All we need to perform is $\braket{\chi|\hat{S}|\chi}$.
+\begin{align}
+	\braket{\chi|\hat{S_z}|\chi} &= \braket{+|\hat{S}|+} + \braket{-|\hat{S}|-}
+\end{align}
+For example in the $z$ direction
+\begin{align}
+	\braket{\bar{S}_z} &= \sum \limits_i f_i \Tr (\hat{S}_z \rho^{(i)})
+	\\
+	&=
+	\frac{\hbar}{2}\left(
+	f_+ \Tr{\left( 
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	0
+	\end{pmatrix}}
+	\right)}
+	+
+	f_- \Tr{\left( 
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	-1
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		0	\\
+		1
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		0	&	1
+	\end{pmatrix}}
+	\right)}
+	\right)
+	\\
+	&=
+	\frac{\hbar}{2}\left(
+	f_+\Tr{\begin{pmatrix}
+		1	&	0	\\
+		0	&	0
+	\end{pmatrix}}
+	+
+	f_-\Tr{\begin{pmatrix}
+		0	&	0	\\
+		0	&	-1
+	\end{pmatrix}}
+	\right)
+	\\
+	&=
+	\frac{\hbar}{2}\left(
+	f_+
+	-
+	f_-
+	\right)
+	\\
+	\Aboxed{\braket{\bar{S}_z} &= 0}
+\end{align}
+since the beam is unpolarized so $f_- = f_+$.  
+
+We could continue this way, but finding $\braket{\bar{S}_x}$ and $\braket{\bar{S}_y}$ is a bit more involved.  Instead lets notice that the density matrices $\rho^{x\pm}$ and $\rho^{z\pm}$ both equal $\frac{1}{2}\mathbf{I}$, and when running that through the double average of $S$, due to the known eigenvalues $\pm\frac{\hbar}{2}$, that summing this will always result in 0.  We already demonstrated this in Equation~\eqref{eq:pzi} and \eqref{eq:pzi} for $\braket{\bar{S}_x}$ and $\braket{\bar{S}_z}$.  This leaves us to confirm $\rho^{(y\pm)}= \frac{1}{2}\mathbf{I}$.  Looking up the spin-$1/2$ eigenstates in the y-direction\cite{mc}:
+\begin{align}
+    \ket{\chi_y +} &=
+    \frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		+i
+	\end{pmatrix}
+    &
+    \ket{\chi_y -} &=
+    \frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 \\
+		-i
+	\end{pmatrix}
+\end{align}
+we can quickly make said confirmation assuming:
+\begin{align}
+	\rho^{(y\pm)} 
+	= 
+	\frac{1}{2}\rho^{(y+)} + \frac{1}{2}\rho^{(y-)} &= \frac{1}{2}(( \ket{\chi_y+}\bra{\chi_y+}) + (\ket{\chi_y-}\bra{\chi_y-} )) 
+	\\
+	&=
+	\frac{1}{2}
+	\frac{1}{\sqrt{2}}
+	\frac{1}{\sqrt{2}}
+	\left(
+	{\begin{pmatrix}
+		1	\\
+		i
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	-i
+	\end{pmatrix}}
+	+
+	{\begin{pmatrix}
+		1	\\
+		-i
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	i
+	\end{pmatrix}}
+	\right)
+	\\
+	\rho^{y\pm}
+	&=
+	\frac{1}{4}
+	\left[
+	{\begin{pmatrix}
+		1	&	-i	\\
+		i	&	1
+	\end{pmatrix}}
+	+
+	{\begin{pmatrix}
+		1	&	i	\\
+		-i	&	1
+	\end{pmatrix}}
+	\right]
+	\\
+	\Aboxed{\rho^{y\pm}
+	&=
+	\frac{1}{2}
+	{\begin{pmatrix}
+		1	&	0	\\
+		0	&	1
+	\end{pmatrix}}
+	\label{eq:pyi}}
+\end{align}
+So thats it! $\rho^{(y)}=\frac{1}{2}\mathbf{I}$, and thus $\braket{\bar{S}_y} = 0$, but we can go ahead and do it anyway because I already typed it in before correcting the above statement.  
+
+\begin{align}
+	\braket{\bar{S}_y} &= \sum \limits_i f_i \Tr (\hat{S}_y \rho^{(i)})
+	\\
+	&=
+	\frac{\hbar}{2}\left(
+	f_+ \Tr{\left( 
+	{\begin{pmatrix}
+		0	&	-i	\\
+		i	&	0
+	\end{pmatrix}}
+	\frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}
+	{\begin{pmatrix}
+		1	\\
+		i
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&	-i
+	\end{pmatrix}}
+	\right)}
+	+
+	f_- \Tr{\left( 
+	{\begin{pmatrix}
+	    0	&	-i	\\
+	    i	&	0
+	\end{pmatrix}}
+	\frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}
+	{\begin{pmatrix}
+		1	\\
+		-i
+	\end{pmatrix}}
+	{\begin{pmatrix}
+		1	&		i
+	\end{pmatrix}}
+	\right)}
+	\right)
+	\\
+	&=
+	\frac{\hbar}{2}\frac{1}{2}\left(
+	f_+\Tr{\left( \begin{pmatrix}
+		0	&	-i	\\
+		i	&	0
+	\end{pmatrix}
+	{\begin{pmatrix}
+	   1    &   -i   \\
+	   i    &   1
+	\end{pmatrix}}
+	\right)}
+	+
+	f_-\Tr{\left(\begin{pmatrix}
+		0	&	-i	\\
+		i	&	0
+	\end{pmatrix}
+	{\begin{pmatrix}
+	   1    &   i   \\
+	   -i    &   1
+	\end{pmatrix}}
+	\right)}
+	\right)
+	\\
+	&=
+	\frac{\hbar}{4}\left(
+	f_+
+	\cancelto{0}
+	{\Tr{\left( \begin{pmatrix}
+		1	&	-i	\\
+		i	&	1
+	\end{pmatrix}
+	\right)}
+	+
+	f_-
+	\Tr{\left(\begin{pmatrix}
+		-1	&	-i	\\
+		i	&	-1
+	\end{pmatrix}
+	\right)}}
+	\right)
+	\\
+	\Aboxed{\braket{\bar{S}_y} &= 0}
+\end{align}
+So $\braket{\bar{S}_y}$ goes to 0 this way too.  And we can also argue that once we know z and x we don't care about y since its going to be the same or something.
+
+\part
+For a beam of spin $1/2$ particles in a mixed state with $60\%$ ``spin up'' along the z axis (i.e. in the $\ket{\chi_z +}$ state) and $40\%$ in the $\ket{\chi_z -}$ state, find the density matrix and show that $\Tr(\rho^2)<1$ in this case.
+\solution
+Using Equation~\eqref{eq:density}
+\begin{align}
+    \rho &= (0.6) \ket{\chi_z +}\bra{\chi_z +} + (0.4)\ket{\chi_z -}\bra{\chi_z -}
+    \\
+    &=
+    \left(
+    (0.6) 
+	\begin{pmatrix}
+		1	\\
+		0
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	0
+	\end{pmatrix}
+	+
+	(0.4)
+	\begin{pmatrix}
+		0	\\
+		1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0	&	1
+	\end{pmatrix}
+	\right)
+	\\
+    &=
+    \left(
+    (0.6) 
+	\begin{pmatrix}
+		1   &   0	\\
+		0   &   0
+	\end{pmatrix}
+	+
+	(0.4)
+	\begin{pmatrix}
+		0	&   0   \\
+		0   &   1
+	\end{pmatrix}
+	\right)
+	\\
+	\rho &=
+	\begin{pmatrix}
+	   0.6  &   0   \\
+	   0    &   0.4
+	\end{pmatrix}
+	\\
+	\rho^2 &=
+	\begin{pmatrix}
+	   0.6  &   0   \\
+	   0    &   0.4
+	\end{pmatrix}
+	\cdot
+	\begin{pmatrix}
+	   0.6  &   0   \\
+	   0    &   0.4
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	   0.36 &   0   \\
+	   0    &   0.16
+	\end{pmatrix}
+	\\
+	\Aboxed{\Tr(\rho^2) &= 0.52}
+\end{align}
+
+\pagebreak[4]
+
+\problem{Berry Phase}
+For the example discussed in class with a spin $1/2$ particle in a magnetic field $(\vec{B})$ of constant magnitude precessing slowly about the z-axis:
+
+\part
+Show that the Berry phase associated with the spin state aligning \underline{opposite} to $\vec{B}$ with the eigenstate given in eq. (34.21) is by:
+\begin{equation}
+	\gamma_-(T) = \frac{1}{2}\Omega-2\pi
+\end{equation}
+\solution
+We will be following along with the procedure done in the notes on page [H-16], except calculating $\gamma_-(T)$ instead.
+Looking at Equation (34.21) from the notes:
+\begin{align}
+    \gamma_-
+    &=
+    \begin{pmatrix}
+        \sin{\frac{\alpha}{2}}  \\
+        -\cos{\frac{\alpha}{2}}e^{i{\omega t}}
+    \end{pmatrix}
+\end{align}
+where $\omega t = \psi$.  Now we find $\vec{A}_+$:
+\begin{align}
+    \label{eq:am}
+    \vec{A}_+ &= i \braket{\psi_-|\vec{\nabla}_r \psi_-}
+\end{align}
+In spherical coordinates:
+\begin{align}
+    \vec{\nabla}_r &=
+    \hat{e}_r\frac{\partial}{\partial r}
+    +
+    \hat{e}_\alpha\frac{1}{r}\frac{\partial}{\partial \alpha}
+    +
+    \hat{e}_\psi\frac{1}{r \sin{\alpha}}\frac{\partial}{\partial \psi}
+\end{align}
+so that Equation~\eqref{eq:am} turns into:
+\begin{align}
+     \vec{A}_+
+     &=
+     i
+     \begin{pmatrix}
+        \sin{\frac{\alpha}{2}}  &   -\cos{\frac{\alpha}{2}}e^{-i \psi}
+     \end{pmatrix}
+     \frac{1}{r}
+     \begin{pmatrix}
+        \frac{1}{2}\cos{\frac{\alpha}{2}} \\
+        \frac{1}{2}e^{i \psi}\sin{\frac{\alpha}{2}}
+     \end{pmatrix}
+     \hat{e}_\alpha
+     +
+     \frac{i}{r \sin{\alpha}}
+     \begin{pmatrix}
+        \sin{\frac{\alpha}{2}}  &   -\cos{\frac{\alpha}{2}}e^{-\psi}
+     \end{pmatrix}
+     \begin{pmatrix}
+        0   \\
+        -i e^{i \psi} \cos{\frac{\alpha}{2}}
+     \end{pmatrix}
+     \hat{e}_{\psi}
+     \\
+     &=
+     \left(
+     \sin{\frac{\alpha}{2}}\frac{1}{r}\frac{1}{2}\cos{\frac{\alpha}{2}}-\cos{\frac{\alpha}{2}}\cancelto{1}e^{-i \psi}\frac{1}{r}\frac{1}{2}\cancelto{1}e^{i \psi}\sin{\frac{\alpha}{2}}
+     \right) \hat{e}_\alpha
+     +
+     \frac{i}{\sin{\alpha}}
+     \left(
+     \cos{\frac{\alpha}{2}}\cancelto{1}e^{-i\psi}i \cancelto{1}e^{i \psi}\cos{\frac{\alpha}{2}}
+     \right)\hat{e}_{\psi}
+     \\
+     &=
+     \cancelto{0}{\left(
+     \sin{\frac{\alpha}{2}}\frac{1}{r}\frac{1}{2}\cos{\frac{\alpha}{2}}-\cos{\frac{\alpha}{2}}\frac{1}{r}\frac{1}{2}\sin{\frac{\alpha}{2}}
+      \right)} \hat{e}_\alpha
+      +
+      \frac{i}{\sin{\alpha}}(i\cos^2{\frac{\alpha}{2}})\hat{e}_{\psi}
+      \\
+      \vec{A}_+
+      &=
+       \frac{-\cos^2{\frac{\alpha}{2}}}{\sin{\alpha}}\hat{e}_{\psi}
+\end{align}
+Remembering that
+\begin{equation}
+    \sin{\alpha} = 2 \cos{\frac{\alpha}{2}}\sin{\frac{\alpha}{2}}
+\end{equation}
+so that we finally get
+\begin{align}
+    \Aboxed{
+    \vec{A}_+
+      &=
+       \frac{-\cos{\frac{\alpha}{2}}}{2 r \sin{\frac{\alpha}{2}}}\hat{e}_{\psi}
+       }
+\end{align}
+At this point we are ready to find $\gamma_-(T)$.  Following Equation~[34.11]
+\begin{align}
+    \gamma_-(T)
+    &=
+    \oint \vec{A}_-\cdot d \vec{R} = \oint \vec{A}_-\cdot d \vec{B}
+    \\
+    &=
+    -\frac{1}{2B_0} 
+    \frac
+    {\cos{\frac{\alpha}{2}}}
+    {\sin{\frac{\alpha}{2}}} 
+    \int_{0}^{2\pi}
+    B_{0} \sin{\alpha} d \psi
+    \\
+    &=
+    -\frac{1}{2} 
+    \frac
+    {\cos{\frac{\alpha}{2}}}
+    {\sin{\frac{\alpha}{2}}} 
+    \sin{\alpha} 2 \pi
+    \\
+    &=
+    -
+    \frac
+    {\cos{\frac{\alpha}{2}}}
+    {\sin{\frac{\alpha}{2}}} 
+    2\cos{\frac{\alpha}{2}}\sin{\frac{\alpha}{2}} (2 \pi)
+    \\
+    &=
+    -
+    {\cos^2{\frac{\alpha}{2}}}(2 \pi)
+    \\
+    &=
+    -
+    {\frac{1}{2}-\frac{1}{2}\cos{\alpha}}(2 \pi)
+    \\
+    \Aboxed{
+    \gamma_-(T)
+    &=
+    -({1+\cos{\alpha}})\pi
+    }
+\end{align}
+To get this to its final form, lets solve for $\gamma_-(T)$ in terms of $\Omega$
+\begin{align}
+    \Omega &= (1 - \cos{\alpha}) 2 \pi
+    \\
+    \Omega / 2 - 2 \pi &= (1 - \cos{\alpha}) \pi - 2\pi
+    \\
+    \Omega / 2 - 2 \pi &= -({1+\cos{\alpha}})\pi
+    \\
+    \Aboxed{
+    \gamma_-(T)
+    &=
+    \Omega / 2 - 2 \pi
+    }
+\end{align}
+\pagebreak[4]
+
+
+\part
+Now consider the more general situation when $\vec{B}$ does not precess with a constant azimuthal angle.  Let us generalize the ``motion of the tip'' of $\vec{B}$ to ``sweep'' out an arbitrary closed loop on the surface of a sphere as shown.  The eigenstate $\psi_+$ is given by:
+\begin{equation}
+	\psi_+ = 
+	\begin{pmatrix}
+		\cos{\frac{\alpha}{2}} \\
+		\sin{\frac{\alpha}{2}}e^{i \varphi}
+	\end{pmatrix}
+\end{equation} 
+with $\alpha(t)$ and $\varphi(t)$ assuming instantaneous values.  Using eq. (34.13) from the lecture notes, show that the Berry phase calculated for this case over one complete cycle is still given by (34.23), i.e.
+\begin{equation}
+	\gamma_+(T) = -\frac{1}{2}\Omega
+\end{equation}
+Where $\Omega$ is the solid angle subtended by the surface on the sphere swept out by $\vec{B}$.
+\solution
+Lets do this!
+\begin{align}
+    \psi_+ &=
+    \begin{pmatrix}
+        \cos{\frac{\alpha}{2}} \\
+        \sin{\frac{\alpha}{2}}e^{i \psi}
+    \end{pmatrix}
+    \\
+    \vec{A}_+
+    &=
+    -\frac{1}{2 B_0} \tan{\frac{\alpha}{2}} \hat{e}_\psi
+\end{align}
+Equation~[34.13] states:
+\begin{align}
+    \gamma_n
+    &=
+    \int_s
+    (
+    \vec{\nabla}_r \times \vec{A}_n
+    )
+    \cdot
+    d \vec{S}
+    \label{eq:gamn}
+\end{align}
+Looking up $\vec{\nabla}_r \times \vec{A}_n$ in Griffiths, dropping terms that do not have $\hat{e}_\psi$, and swapping $r$ for $B_0$  we get:
+\begin{align}
+    \vec{\nabla}_r \times \vec{A}_n
+    &=
+    \frac{1}{r \sin{\alpha}}
+    \left[
+    \frac{\partial}{\partial \alpha} (\sin{(\alpha)}A_\psi)
+    \right]\hat{e}_r
+    +
+    \frac{1}{r}
+    \left[
+    -\frac{\partial}{\partial r}(r A_\psi)
+    \right]\hat{e}_\alpha
+    \\
+    &=
+    \frac{1}{B_0 \sin{\alpha}}
+    \left[
+    \frac{\partial}{\partial \alpha} (\sin{(\alpha)}\left(\frac{-1}{2 B_0} \tan{\frac{\alpha}{2}}\right))
+    \right]\hat{e}_{B_0}
+    +
+    \frac{1}{B_0}
+    \left[
+    -\frac{\partial}{\partial B_0}(B_0 \left(\frac{-1}{2 B_0} \tan{\frac{\alpha}{2}}\right))
+    \right]\hat{e}_\alpha
+    \\
+    &=
+    \frac{1}{B_0 \sin{\alpha}}
+    \frac{-1}{2 B_0}
+    \frac{\partial}{\partial\alpha}
+    (
+    \sin{\alpha}\tan{\frac{\alpha}{2}}
+    )\hat{e}_{B_0}
+    +
+    \cancelto{0}
+    {
+    \frac{1}{B_0}
+    \tan{\frac{\alpha}{2}}
+    \frac{\partial}{\partial B_0}\frac{1}{2}\hat{e}_\alpha}
+    \\
+    &=
+    \frac{-1}{2 B_0 \sin{\alpha}} \frac{\partial}{\partial \alpha}
+    (
+    \sin{\alpha}\tan{\frac{\alpha}{2}}
+    )
+    \hat{e}_{B_0}
+    \\
+    &=
+    \frac{-1}{2 B_0 \sin{\alpha}}
+    \left(
+    \frac{1}{2}\sec^2{(\frac{\alpha}{2})}\sin{\alpha}+\cos{\alpha}\tan{\frac{\alpha}{2}}
+    \right)
+    \hat{e}_{B_0}
+    \\
+    \label{eq:res}
+    &=
+    \frac{-1}{2 B_0}
+    \left(
+    \frac{1}{2}\sec^2{(\frac{\alpha}{2})}+\cot{\alpha}\tan{\frac{\alpha}{2}}
+    \right)
+    \hat{e}_{B_0}
+\end{align}
+Remembering our half angle theorems
+\begin{align}
+    \frac{1}{\cos^2{\frac{a}{2}}} &= \frac{2}{1 + \cos{\alpha}}
+    \\
+    \tan{a}{2}&= \frac{\sin{a}}{1+\cos{a}}
+\end{align}
+we can continue reducing Equation~\eqref{eq:res}
+\begin{align}
+    \vec{\nabla}_r \times \vec{A}_n
+    &=
+    \frac{-1}{2 B_0}
+    \left(
+    \frac{1}{2}
+    \frac{1}{\cos^2{\frac{\alpha}{2}}}
+    +
+    \frac{\cos{\alpha}}{\sin{\alpha}}
+    \tan{\frac{\alpha}{2}}
+    \right)\hat{e}_{B_0}
+    \\
+    &=
+    \frac{-1}{2 B_0}
+    \left(
+    \frac{1}{(1 + \cos{\alpha})}
+    +
+    \cos{\alpha}
+    \frac{1}{1 + \cos{\alpha}}
+    \right)\hat{e}_{B_0}
+    \\
+    \Aboxed{
+    \vec{\nabla}_r \times \vec{A}_n
+    &=
+    \frac{-1}{2 B_0^2}
+    \hat{e}_{B_0}}
+\end{align}
+Putting this result into Equation~\eqref{eq:gamn} we arrive at our final answer, where $d\vec{S} = B_0^2 d \Omega \hat{e}_{B_0}$
+\begin{align}
+    \gamma_n
+    &=
+    \int_s
+    (
+    \vec{\nabla}_r \times \vec{A}_n
+    )
+    \cdot
+    d \vec{S}
+    \\
+    &=
+    \int_s
+    \left(
+    \frac{-1}{2 B_0^2}
+    \hat{e}_{B_0}
+    \right)
+    \cdot
+    B_0^2 d \Omega \hat{e}_{B_0}
+    \\
+    &=
+    \frac{-1}{2}
+    \int d \Omega
+    \\
+    &=
+    \frac{-1}{2}
+    \int_0^\alpha \sin{\alpha} d \alpha \int_0^{2\pi} d \psi
+    \\
+    &= (1 - \cos{\alpha})\pi
+    \\
+    \Aboxed{
+    \gamma_n
+    &= 
+    -\frac{1}{2} \Omega}
+\end{align}
+
+\problem{Fermion or Boson}
+Explain how according to the algebra of quantum mechanical angular momentum, particles must exist in the form of either a fermion (with half-integral spin) or a boson (with integral spin), and cannot have any other values (rational or irrational) for their intrinsic spin such as $s = 2/3$, $7/5$, $\pi$, ..., etc.
+\solution
+If particles were allowed to have rational or irrational values for their intrinsic spin, the ladder operators can't lower $m$ all the way down to $m_\text{min}$ in integer steps without going beyond $m_min$ or never quite reaching it.  
+
+Looking at our ladder operators derived in the notes[I-3]:
+\begin{align}
+	J_+ \ket{j m} &= c_{jm}^+ \ket{jm+1}
+	\\
+	J_- \ket{j m} &= c_{jm}^- \ket{jm-1}
+\end{align}
+and solving the eigenvalue problem to find the bounds on $m$ we find
+\begin{align}
+	m_\text{min} &= - m_\text{max}
+	\\
+	m_\text{min} &= -j
+\end{align}
+we are left to work on the limits of $j$, where the question lies.  Why does $j$ have to take a $1/2$ integer value?  The answer lies in the requirements for the minimum and maximum values of having to equal $|j|$, which depends on $m_\text{min}$.  If we run our lowering operator all the way to the bottom, we quickly find that for all of these conditions to be met, $j$ has to take on these positive $1/2$ integer values.
+\begin{align}
+	J_- \ket{j m_\text{max}} 
+	&=
+	J_- \ket{j j} 
+	= 
+	c^- \ket{j(j-1)}
+	\\
+	J_- \ket{j (j-1)} 
+	&=
+	c^- \ket{j(j-2)}
+	\\
+	&\vdots
+	\\
+	J_- \ket{j (j_\text{min}+1)} 
+	&=
+	c^- \ket{j(j_\text{min})}
+	\\
+	J_- \ket{j (j_\text{min})} 
+	&=
+	0
+\end{align}
+So if we run this process with some value with $j$, subtracting 1 from $m_\text{max}$ each time, we find that we will only get to $(j_\text{min})$ if $j = \frac{1}{2}n$ where $n$ is a positive integer.  For example, if we try with $j = 1.1$, the lowest we can get is only $m_\text{min} = -0.9$ such that $m_\text{max} \neq -m_\text{min}$.  Now that is some dense notation.
+
+
+\problem{The W-Boson}
+The $W$-Boson is one of the fundamental mediator of quanta in the unified electroweak field theory.  The $W$ was discovered in CERN in 1983 and is known to have spin equal to 1.  Derive explicit matrix representations for the spin operator of the $W$ particle: i.e., let $\bar{S}= \hbar \bar{\Sigma}$, find all the component matrices of $\bar{\Sigma}$, which include: $\Sigma_+$,$\Sigma_-$,$\Sigma_x$,$\Sigma_y$,$\Sigma_z$,$\Sigma^2.$
+\solution
+Lets assume here that we have a free particle such that the orbital angular momentum is zero: $\hat{L} = \cancelto{0}{\hat{J}} + \hat{S}$. This leaves us to find $\hat{S}$ for a spin 1 particle, which means we can follow the notes on page [I-8].  First, lets get our tools out, including our raising and lowering operators.
+\begin{align}
+    S_+\ket{jm}
+    &=
+    c_{jm}^+\ket{j(m+1)}
+    &
+    c_{jm}^+
+    &=
+    \hbar\sqrt{(j-m)(j+m+1)}
+    \\
+    S_+\ket{jm}
+    &=
+    c_{jm}^-\ket{j(m-1)}
+    &
+    c_{jm}^-
+    &=
+    \hbar\sqrt{(j+m)(j-m+1)}
+    \\
+    \label{eq:sx}
+    S_x\ket{jm}
+    &=
+    \frac{1}{2}(S_+ + S_-)\ket{jm}
+    \\
+    \label{eq:sy}
+    S_y\ket{jm}
+    &=
+    \frac{i}{2}(S_- - S_+)\ket{jm}
+    \\
+    \label{eq:sz}
+    S_z\ket{jm}
+    &=
+    \hbar m\ket{jm}
+    \\
+    \label{eq:s2}
+    S^2\ket{jm}
+    &=
+    \hbar^2 j (j+1)\ket{jm}
+\end{align}
+Lets go ahead and calculate our $c_{jm}^\pm$ values.  For spin $1$ particles, $j=1$, $m_\text{min}=-j$ and $m_\text{max}=j$, with integer steps in between.
+\begin{align}
+    c_{11}^+ &= 0   &    c_{10}^+ &= \sqrt{2}\hbar  &   c_{1(-1)}^+ &= \sqrt{2}\hbar
+    \\
+    c_{11}^- &= \sqrt{2}\hbar   &    c_{10}^- &= \sqrt{2}\hbar  &   c_{1(-1)}^+ &= 0
+\end{align}
+Our matrix elements take the form of:
+\begin{equation}
+    \bra{j'm'}S_\pm\ket{jm} = c_{jm}^\pm \delta_{jj'}\delta_{m'(m\pm1)}
+\end{equation}
+$j = j'$ for all elements however, so we can skip writing it in our matrix elements.
+\begin{align}
+    S_{+}\ket{j m}
+    &=
+    \begin{pmatrix}
+        c_{11}^+ \delta_{12}    &   c_{10}^+ \delta_{11}    &   c_{1(-1)}^+ \delta_{10}    \\
+        c_{11}^+ \delta_{02}    &   c_{10}^+ \delta_{01}    &   c_{1(-1)}^+ \delta_{00}    \\
+        c_{11}^+ \delta_{(-1)2}    &   c_{10}^+ \delta_{(-1)1}    &   c_{1(-1)}^+ \delta_{(-1)0}
+    \end{pmatrix}
+    \ket{j m}
+    \\
+    &=
+    \begin{pmatrix}
+        0   &   \sqrt{2}\hbar   &   0   \\
+        0   &   0   &   \sqrt{2}\hbar   \\
+        0   &   0   &   0   
+    \end{pmatrix}
+    \ket{j m}
+    \\
+    S_{+}
+    &=
+    \sqrt{2}\hbar
+    \begin{pmatrix}
+        0   &   1   &   0   \\
+        0   &   0   &   1   \\
+        0   &   0   &   0   
+    \end{pmatrix}
+    \\
+    \Aboxed{
+    \Sigma_+
+    &=
+    \sqrt{2}
+    {\begin{pmatrix}
+        0   &   1   &   0   \\
+        0   &   0   &   1   \\
+        0   &   0   &   0   
+    \end{pmatrix}}
+    }
+\end{align}
+Same procedure for $S_{+}$:
+\begin{align}
+    S_{-}\ket{j m}
+    &=
+    \begin{pmatrix}
+        c_{11}^- \delta_{10}    &   c_{10}^- \delta_{1(-1)}    &   c_{1(-1)}^- \delta_{1(-2)}    \\
+        c_{11}^- \delta_{00}    &   c_{10}^- \delta_{0(-1)}    &   c_{1(-1)}^- \delta_{0(-2)}    \\
+        c_{11}^- \delta_{(-1)0}    &   c_{10}^- \delta_{(-1)(-1)}    &   c_{1(-1)}^- \delta_{(-1)(-2)}
+    \end{pmatrix}
+    \ket{j m}
+    \\
+    &=
+    \begin{pmatrix}
+        0   &   0   &   0   \\
+        \sqrt{2}\hbar   &   0   &   0   \\
+        0   &   \sqrt{2}\hbar   &   0   
+    \end{pmatrix}
+    \ket{j m}
+    \\
+    S_{-}
+    &=
+    \sqrt{2}\hbar
+    \begin{pmatrix}
+        0   &   0   &   0   \\
+        1   &   0   &   0   \\
+        0   &   1   &   0   
+    \end{pmatrix}
+    \\
+    \Aboxed{
+    \Sigma_-
+    &=
+    \sqrt{2}
+    {\begin{pmatrix}
+        0   &   0   &   0   \\
+        1   &   0   &   0   \\
+        0   &   1   &   0   
+    \end{pmatrix}}
+    }
+\end{align}
+Solving for $S_x$ using Equation~\eqref{eq:sx}:
+\begin{align}
+    S_{x}\ket{j m}
+    &=
+    \frac{1}{2}(S_+ + S_-)\ket{j m}
+    \\
+    &=
+    \frac{1}{2}
+    \left(
+    \begin{pmatrix}
+        0   &   \sqrt{2}\hbar   &   0   \\
+        0   &   0   &   \sqrt{2}\hbar   \\
+        0   &   0   &   0   
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        0   &   0   &   0   \\
+        \sqrt{2}\hbar   &   0   &   0   \\
+        0   &   \sqrt{2}\hbar   &   0   
+    \end{pmatrix}
+    \right)\ket{j m}
+    \\
+    &=
+    \frac{\hbar}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   1   &   0   \\
+        1   &   0   &   1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}
+    \ket{j m}
+    \\
+    S_{x}
+    &=
+    \frac{\hbar}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   1   &   0   \\
+        1   &   0   &   1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}
+    \\
+    \Aboxed{
+    \Sigma_{x}
+    &=
+    \frac{1}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   1   &   0   \\
+        1   &   0   &   1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}}
+\end{align}
+Solving for $S_y$ using Equation~\eqref{eq:sy}:
+\begin{align}
+    S_{y}\ket{j m}
+    &=
+    \frac{i}{2}(S_- - S_+)\ket{j m}
+    \\
+    &=
+    \frac{i}{2}
+    \left(
+    \begin{pmatrix}
+        0   &   0   &   0   \\
+        \sqrt{2}\hbar   &   0   &   0   \\
+        0   &   \sqrt{2}\hbar   &   0   
+    \end{pmatrix}
+    -
+    \begin{pmatrix}
+        0   &   \sqrt{2}\hbar   &   0   \\
+        0   &   0   &   \sqrt{2}\hbar   \\
+        0   &   0   &   0   
+    \end{pmatrix}
+    \right)\ket{j m}
+    \\
+    &=
+    \frac{i \hbar}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   -1   &   0   \\
+        1   &   0   &   -1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}
+    \ket{j m}
+    \\
+    S_{y}
+    &=
+    \frac{i\hbar}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   -1   &   0   \\
+        1   &   0   &   -1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}
+    \\
+    \Aboxed{
+    \Sigma_{y}
+    &=
+    \frac{i}{\sqrt{2}}
+    {\begin{pmatrix}
+        0   &   -1   &   0   \\
+        1   &   0   &   -1   \\
+        0   &   1   &   0   
+    \end{pmatrix}}}
+\end{align}
+Solving for $S_z$ using Equation~\eqref{eq:sz}:
+\begin{align}
+    S_{z}\ket{j m}
+    &=
+    \hbar m\ket{j m}
+    \\
+    &=
+    \begin{pmatrix}
+        \hbar   &   0   &   0   \\
+        0   &   0   &   0   \\
+        0   &   0   &   -\hbar
+    \end{pmatrix}
+    \ket{j m}
+    \\
+     S_{z}
+     &=
+     \hbar 
+     {\begin{pmatrix}
+         1   &   0   &   0   \\
+         0   &   0   &   0   \\
+         0   &   0   &   -1
+     \end{pmatrix}}
+     \\
+     \Aboxed{
+     \Sigma_{z}
+     &=
+     {\begin{pmatrix}
+          1   &   0   &   0   \\
+          0   &   0   &   0   \\
+          0   &   0   &   -1
+      \end{pmatrix}}}
+\end{align}
+Solving for $S^2$ using Equation~\eqref{eq:s2}:
+\begin{align}
+    S^{2}\ket{j m}
+    &=
+    \hbar^2 j(j+1)\ket{j m}
+    \\
+    &=
+    \begin{pmatrix}
+        2\hbar^2   &   0   &   0   \\
+        0   &   2\hbar^2   &   0   \\
+        0   &   0   &   2\hbar^2
+    \end{pmatrix}
+    \ket{j m}
+    \\
+     S_{z}
+     &=
+     2\hbar^2 
+     {\begin{pmatrix}
+         1   &   0   &   0   \\
+         0   &   1   &   0   \\
+         0   &   0   &   1
+     \end{pmatrix}}
+     \\
+     \Aboxed{
+     \Sigma^{2}
+     &=
+     2
+     {\begin{pmatrix}
+          1   &   0   &   0   \\
+          0   &   1   &   0   \\
+          0   &   0   &   1
+      \end{pmatrix}} = 2 \mathbf{I}}
+\end{align}
+
+
+
+
+\bibliography{hw2-619} 
+\bibliographystyle{plain} \nocite{*}
+
+\end{document}

@@ -1,0 +1,4 @@
+[submodule "hw-template"]
+	path = hw-template
+	url = git://github.com/bcomnes/hw-template.git
+

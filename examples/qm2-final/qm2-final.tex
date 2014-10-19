@@ -1,0 +1,62 @@
+\documentclass{jhwhw}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue
+}
+
+% This adds the ability to box answers by wrapping things in
+% \Aboxed{The thing you want boxed}
+\def\@Aboxed#1&#2\ENDDNE{%
+  \settowidth\@tempdima{$\displaystyle#1{}$}%
+  \addtolength\@tempdima{\fboxsep}%
+  \addtolength\@tempdima{\fboxrule}%
+  \global\@tempdima=\@tempdima
+  \kern\@tempdima
+  &
+  \kern-\@tempdima
+  \fcolorbox{red}{yellow}{$\displaystyle #1#2$}
+}
+
+\author{Bret Comnes}
+\title{Phyx 618 Quantum Mechanics Final}
+
+\begin{document}
+\problem{Rotating wave Approximation for the 2-level system}
+See problem statement for full details.  Quite simply though, we have a system that has two possible states, $\Psi_1$ and $\Psi_2$, and we perturb it with a sinusoidal potential, $H'_(t)=-e \epsilon z \cos{ \omega t} = V\left( e^{i \omega t} + e^{-i \omega t}\right)$ where $V = -e \epsilon z / 2$.
+
+In class, we worked out the exact differential equation to solve the Schrodinger equation for this systems.
+
+\begin{align}
+    \label{eq:c1}
+    \dot c_1 &=  -\frac{i}{\hbar} V_{12} \left[e^{i (\omega - \omega_{21}) t} + e^{-i (\omega + \omega_{21}) t} \right] \\ \label{eq:c2}
+    \dot c_2 &=  -\frac{i}{\hbar} V_{21} \left[e^{i (\omega - \omega_{21}) t} + e^{-i (\omega - \omega_{21}) t} \right]
+\end{align}
+\part
+What do we mean by the rotating wave approximation?
+\solution
+We mean that we drop the counter rotating portion, $e^{-i (\omega + \omega_{21}) t}$ in $\dot c_1$ and $e^{i (\omega + \omega_{21}) t}$ in $\dot c_2$,  of \eqref{eq:c1} and \eqref{eq:c2}.  We can do this by omitting these parts out of $H'$, or we can just drop them out of our differential equation.
+
+\part
+What are the physical arguments which justify the application of the RWA in terms of the detuning parameter which is defined by:
+\begin{equation}
+    \Delta \omega = \omega - \omega_{21}
+\end{equation}
+\solution
+Because we expect $\omega-\omega_{21}$ to dominate during the time evolution of our system when $\omega~\omega_{21}$, our near resonance condition, we can safely ignore the couture rotating terms and solve our differential equation exactly.  When you do perturbation later, it is also clear that one of these terms will dominate as it goes to 0 in the denominator, while the other term is much larger relatively speaking. 
+
+\part
+Write down the approximate form of \eqref{eq:c1} and \eqref{eq:c2} under the RWA in terms of the detuning parameter.
+\solution
+See next page.
+
+\pagebreak[4]
+
+\part
+Assuming $c_1{(0)}=$ and $c_2{(0)}=0$
+\solution
+\end{document}
