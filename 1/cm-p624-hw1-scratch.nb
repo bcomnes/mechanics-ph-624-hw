@@ -1,0 +1,33 @@
+Notebook[{
+Cell["\<\
+Dont forget to disable FileOutlineCache in the FORMAT->OPTIONS INSPECTOR \
+window.\
+\>", "Text",
+ CellChangeTimes->{{3.576956991921134*^9, 3.5769570097884912`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{3.574607911965105*^9, 3.574607983313957*^9}],
+
+Cell[BoxData["\<\"/Users/bret/Documents/psu-projects/mechanics-ph-624-hw/1\"\>\
+"], "Output",
+ CellChangeTimes->{3.6227325725531397`*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 656},
+WindowMargins->{{60, Automatic}, {101, Automatic}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
+2014)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]]}, Visible -> False, 
+  FrontEndVersion -> 
+  "10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, 2014)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+

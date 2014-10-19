@@ -1,0 +1,952 @@
+\documentclass{article}
+\everymath{\displaystyle}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage[lmargin=2.5cm, rmargin=2.5cm,tmargin=3cm,bmargin=2.5cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue
+}
+
+% \TISCH{m}{x}{V}{E}{\Psi}
+\def\TISCH#1#2#3#4#5{-\frac{\hbar}{2{#1}}\frac{d^2{#5}}{d{#2}^2}+{#3}{#5}={#4}{#5}}
+%
+\def\ket#1{|#1\rangle}
+\def\bra#1{\langle#1|}
+\def\braket#1#2{\langle#1|#2\rangle}
+\def\Vec#1{\mathbf{\boldsymbol{#1}}}
+\def\Hat#1{\hat{\boldsymbol{#1}}}
+\def\Sin#1{\sin\left(#1\right)}
+\def\SinSq#1{\sin^2\left(#1\right)}
+\def\Cos#1{\cos\left(#1\right)}
+\def\CosSq#1{\cos^2\left(#1\right)}
+\def\Sinh#1{\sinh\left(#1\right)}
+\def\Cosh#1{\cosh\left(#1\right)}
+\def\Exp#1{\exp\left(#1\right)}
+\def\sinser#1#2{\sum_{n=1}^{\infty}\Sin{\frac{n\pi #1}{#2}}}
+\def\slode#1#2#3#4#5{\frac{d}{d#2}\left(#3\frac{d#1}{d#2}\right)+#4#1+\lambda #5#1=0}
+\def\slser#1{\sum_{n=1}^{\infty}a_n\phi_n(#1)e^{-\lambda t}}
+\def\slan#1#2#3#4{a_n=\frac{\int_{#3}^{#4}f(#1)\phi_n(#1)#2\,d#1}{\int_{#3}^{#4}\phi_n^2(#1)#2\,d#1}}
+\def\slconst#1#2#3#4#5#6{#5=\frac{\int_{#3}^{#4}#1\phi_n(#6)#2\,d#6}{\int_{#3}^{#4}\phi_n^2(#6)#2\,d#6}}
+\def\eean0#1#2#3#4#5{\frac{\int_0^{#1}{#2}{#3}\,{#5}\;d{#4}} {\int_0^{#1}\left[{#3}\right]^2{#5}\;d{#4}}}
+\def\eeant#1#2#3#4#5#6#7{e^{-#4#5t}\left(a_n(0) + \int_0^t \frac{\int_0^{#1}{#2}{#3}\,{#7}\;d{#6}}{\int_0^{#1}\left[{#3}\right]^2{#7}\;d{#6}} e^{#4#5\tau} d\tau\right)}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\linespread{1.25} \selectfont
+\fontsize{12}{12}\selectfont
+
+{\bf
+\begin{center}
+PH 617, Problem Set \#2
+\vspace{12pt}\\
+Mike Witt\\
+\end{center}
+}
+\bigskip
+
+{\bf Problem 1:}
+\\\\
+First I'll set up the time derivatives of $\psi$ and $\psi^*$ with the
+complex potential. This comes from just dividing the TDSE by $i\hbar$.
+\begin{quote}
+$
+\frac{\partial\psi}{\partial t}
+    = \frac{i\hbar}{2m} \frac{\partial^2\psi}{\partial x^2}
+    - \frac{i}{\hbar}(V_R + iV_I)\psi, \;\;
+\frac{\partial\psi^*}{\partial t}
+    = -\frac{i\hbar}{2m} \frac{\partial^2\psi^*}{\partial x^2}
+    + \frac{i}{\hbar}(V_R - iV_I)\psi^*
+$
+\end{quote}
+Now I'll calculate the time derivative of the probability density.
+I'm going use $\rho'$ in order to distinguish this density from $\rho$
+which we have already calculated in class from a real potential.
+\begin{quote}
+$
+\frac{\partial\rho'}{\partial t}
+    = \frac{\partial}{\partial t}(\psi^*\psi)
+    \vspace{12pt}\\ \hspace*{18pt}
+    = -\frac{i\hbar}{2m}\frac{\partial^2\psi^*}{\partial x^2}\psi
+      + \frac{i}{\hbar}(V_R-iV_I)\psi^*\psi
+      +\frac{i\hbar}{2m}\frac{\partial^2\psi}{\partial x^2}\psi^*
+      - \frac{i}{\hbar}(V_R+iV_I)\psi\psi^*
+    \vspace{12pt}\\ \hspace*{18pt}
+    = -\frac{i\hbar}{2m}\frac{\partial^2\psi^*}{\partial x^2}\psi
+      + \frac{1}{\hbar}(iV_R+V_I)\psi^*\psi
+      +\frac{i\hbar}{2m}\frac{\partial^2\psi}{\partial x^2}\psi^*
+      + \frac{1}{\hbar}(-iV_R+V_I)\psi\psi^*
+    \vspace{12pt}\\ \hspace*{18pt}
+    = \frac{i\hbar}{2m}\left(\frac{\partial^2\psi}{\partial x^2}\psi^*
+        - \frac{\partial^2\psi^*}{\partial x^2}\psi\right)
+        + \frac{1}{\hbar}V_R\psi^*\psi
+        - \frac{1}{\hbar}V_R\psi^*\psi
+        + \frac{1}{\hbar}V_I\psi^*\psi
+        + \frac{1}{\hbar}V_I\psi^*\psi
+    \vspace{12pt}\\ \hspace*{18pt}
+    = \frac{i\hbar}{2m}\left(\frac{\partial^2\psi}{\partial x^2}\psi^*
+        - \frac{\partial^2\psi^*}{\partial x^2}\psi\right)
+        + \frac{2}{\hbar}V_I\psi^*\psi
+    \vspace{12pt}\\ \hspace*{18pt}
+    = \frac{\partial\rho}{\partial t} + \frac{2}{\hbar}V_I\psi^*\psi
+$
+\end{quote}
+So the new probability density $\rho'$ appears to be equal to the
+probability density $\rho$ which was previously calculated from a real
+potential, but with the added term of:
+$(2/\hbar)V_I\psi^*\psi$. The integration is easy, because we already
+know that total time change of $\rho$ is zero, and the inner product
+$\langle \psi^*|\psi\rangle$ is one.
+\begin{quote}
+$
+   \int_{-\infty}^{\infty}
+    \left(
+        \frac{\partial\rho}{\partial t} + \frac{2}{\hbar}V_I\psi^*\psi
+    \right)dx
+   = \int_{-\infty}^{\infty} \frac{\partial\rho}{\partial t}\,dx
+   + \frac{2}{\hbar}V_I\int_{-\infty}^{\infty} \psi^*\psi\,dx
+    = \frac{2}{\hbar}V_I
+$
+\end{quote}
+If I'm understanding this all correctly, then in answer to the question:
+if we want the total time change to be negative, then we must start out
+with a potential that has a negative imaginary part.
+
+\pagebreak
+{\bf Problem 2(a):}
+\\\\
+$\psi = Ae^{ikx} + Be^{-ikx}, \;\;
+        \frac{\partial\psi}{\partial x} = ikAe^{ikx} - ikBe^{-ikx}
+    \vspace{6pt}\\
+    \psi^* = A^*e^{-ikx} + B^*e^{ikx}, \;\;
+        \frac{\partial\psi^*}{\partial x} = -ikA^*e^{-ikx} + ikB^*e^{ikx}
+\vspace{12pt}\\
+    J = \frac{i\hbar}{2m}\left[
+        \psi\frac{d\psi^*}{dx} - \psi^*\frac{d\psi}{dx} \right]
+\vspace{12pt}\\ \hspace*{8pt}
+    = \frac{i\hbar}{2m}\left[
+      \left(Ae^{ikx}+Be^{-ikx}\right)\left(-ikA^*e^{-ikx}+ikB^*e^{ikx}\right) 
+      -\left(A^*e^{-ikx}+B^*e^{ikx}\right)\left(ikAe^{ikx}-ikBe^{-ikx}\right)
+    \right]
+\vspace{12pt}\\ \hspace*{8pt}
+    = \frac{i\hbar}{2m}\left[
+        -ikAA^* + ikABe^{2ikx} - ikABe^{-2ikx} + ikBB^*
+        -ikAA^* +ikABe^{-2ikx} - ikABe^{2ikx} + ikBB^*
+    \right]
+\vspace{12pt}\\ \hspace*{8pt}
+    = \frac{i\hbar}{2m}\left[ -2ikAA^* +2ikBB^* \right]
+\vspace{12pt}\\ \hspace*{8pt}
+    = (2ik)\frac{i\hbar}{2m}\left[ -AA^* +BB^* \right]
+\vspace{12pt}\\ \hspace*{8pt}
+    = \frac{k\hbar}{m}\left(\,|A|^2 - |B|^2\,\right)
+$
+\\\\\\
+{\bf Problem 2(b):}
+\\\\
+$
+\psi = u(x)e^{ikx},\;\; \psi^* = u(x)e^{-ikx}
+\vspace{12pt}\\
+\frac{d\psi}{dx} = u'e^{ikx}+ikue^{ikx},\;\;
+\frac{d\psi^*}{dx} = u'e^{-ikx}-ikue^{-ikx}
+\vspace{12pt}\\
+  J = \frac{i\hbar}{2m}\left[
+      ue^{ikx}\left(u'e^{-ikx}-ikue^{-ikx}\right) 
+      -u(x)e^{-ikx}\left(u'e^{ikx}+ikue^{ikx}\right)
+    \right]
+\vspace{12pt}\\ \hspace*{8pt}
+  = \frac{i\hbar}{2m}\left[ uu' - iku^2 - uu' - iku^2 \right]
+\vspace{12pt}\\ \hspace*{8pt}
+  = \frac{i\hbar}{2m}\left[-2iku^2 \right]
+\vspace{12pt}\\ \hspace*{8pt}
+  = \frac{\hbar k}{m}\left[u(x)\right]^2
+$
+
+\pagebreak
+{\bf Problem 3:}
+\\\\
+I'll start with the expectation value for position, expressed in the
+position basis:
+\begin{quote}
+$
+    \langle x \rangle =
+    \int_{-\infty}^{\infty} \psi^*\, x\, \psi\, dx
+$
+\end{quote}
+Then replace $\psi$ with its Fourier transform:
+\begin{quote}
+$
+    \langle x \rangle =
+    \int_{-\infty}^{\infty} \psi^* \, x\,
+    \left(\frac{1}{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty}\phi\, e^{i p_x x/\hbar}\,dp_x\right)
+    dx
+$
+\end{quote}
+Now, I can swap the order of the integrations as long as all the
+functions of $x$ and $p_x$ stay within their respective integrals:
+\begin{quote}
+$
+    \langle x \rangle =
+    \int_{-\infty}^{\infty} \phi
+    \left(\frac{1}{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty} \psi^*\,x\,e^{i p_x x/\hbar}\,dx\right)
+    dp_x
+    \;\;\; (1)
+$
+\end{quote}
+I can take the conjugate of $\phi$ and its derivative by operating
+directly on the Fourier transform:
+\begin{quote}
+$
+    \frac{d\phi^*}{dp_x} =
+    \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} 
+    \psi^* \frac{d}{dp_x}\left(e^{i p_x x/\hbar}\right)\,dx
+    = \frac{ix}{\hbar}\frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} 
+    \psi^* e^{i p_x x/\hbar}\,dx
+$
+\end{quote}
+Therefore:
+\begin{quote}
+$
+  \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} 
+    \psi^* x\,e^{i p_x x/\hbar}\,dx
+   = -i\hbar\frac{d\phi^*}{dp_x}
+$
+\end{quote}
+Substituting this value back into (1) gives:
+\begin{quote}
+$
+    \langle x \rangle =
+    \int_{-\infty}^{\infty}\phi\left( -i\hbar\frac{d\phi^*}{dp_x}\right) dp_x
+    = -i\hbar\int_{-\infty}^{\infty}\phi\,\frac{d\phi^*}{dp_x}\,dp_x
+$
+\end{quote}
+Which by the product rule (integration by parts) is:
+\begin{quote}
+$
+    \langle x \rangle 
+    = -i\hbar\int_{-\infty}^{\infty} 
+        \left(
+        \frac{d\phi}{dp_x}(\phi\phi^*)
+        - \phi^*\,\frac{d\phi}{dp_x}\right) dp_x
+    \vspace{12pt}\\ \hspace*{15pt}
+    = -i\hbar\left(\phi\phi^*\bigg|_{-\infty}^0
+        +\phi\phi^*\bigg|_0^{\infty} 
+        - \int_{-\infty}^{\infty}\phi^*\,\frac{d\phi}{dp_x} dp_x
+        \right)
+    \vspace{12pt}\\ \hspace*{15pt}
+    = -i\hbar\left(
+        +\phi(0)\phi^*(0) - 0 + 0 - \phi(0)\phi^*(0)
+        - \int_{-\infty}^{\infty}\phi^*\,\frac{d\phi}{dp_x} dp_x
+        \right)
+    \vspace{12pt}\\ \hspace*{15pt}
+        = i\hbar\int_{-\infty}^{\infty}\phi^*\,\frac{d\phi}{dp_x} dp_x
+        = \int_{-\infty}^{\infty}
+        \phi^*
+        \left(i\hbar\frac{d}{dp_k}\right)
+        \phi\,dp_x
+$
+\end{quote}
+Which expresses the expectation value in the momentum basis, utilizing
+the operator: 
+\begin{quote}
+    $\hat{x} = i\hbar\frac{d}{dp_k}$.
+\end{quote}
+
+\pagebreak
+{\bf Problem 4:}
+\\\\
+I believe what we have here is: 
+$e^{i\hat{p}_xa/\hbar}\,\hat{x}\,e^{-i\hat{p}_xa/\hbar}$\\
+Since we are dealing with operators, we can't simply add the exponents.
+\\\\
+I'm going to use formula (2.117) from Zettili page 97 to do the Taylor
+series expansion using the commutator:
+\begin{quote}
+$
+    e^{i\hat{p}_xa/\hbar}\,\hat{x}\,e^{-i\hat{p}_xa/\hbar}
+    = \hat{x} +\left[i\hat{p}_xa/\hbar,\;\hat{x}\right]
+    + \left[i\hat{p}_xa/\hbar,\;\left[i\hat{p}_xa/\hbar,\;\hat{x}\right]\right]
+    + ...
+$
+\end{quote}
+the first term is: $\hat{x}$
+\vspace{6pt}\\
+the 2nd term is: $\left[i\hat{p}_xa/\hbar,\;\hat{x}\right]
+    = (i/\hbar)a\left[\hat{p}_x,\;\hat{x}\right]
+    = (i/\hbar)a(-i\hbar) = a
+$
+\vspace{6pt}\\
+the 3rd term is:
+ $\left[i\hat{p}_xa/\hbar,\;\left[i\hat{p}_xa/\hbar,\;\hat{x}\right]\right]
+    = \left[i\hat{p}_xa/\hbar,\;a\right]=0\;$ (all opers commute with
+    constants)
+\vspace{6pt}\\
+and all the rest of the terms are zero, since they include the (nested)
+commutation with zero.\\\\
+So we have: $\hat{x}+a = x+a$ (in the position basis).
+\\\\
+The problem said to "use the results of problem 3" and I guess I didn't
+do that. So maybe I did it the wrong way?
+
+
+\pagebreak
+{\bf Problem 5(a):}
+\\\\
+(i) Assuming that $A$ is Hermitian all of its eigenvalues will be real, and
+a real number squared is positive, therefore:
+\begin{quote}
+$
+    \langle A^2 \rangle = \langle \psi| A^2 |\psi\rangle
+    = \langle \psi| A (A|\psi\rangle)
+    = \langle \psi| A (\lambda|\psi\rangle)
+    = \langle \psi| \lambda^2|\psi\rangle
+    = \lambda^2 \langle \psi| \psi\rangle
+    \vspace{6pt}\\
+    $where $\lambda^2$ is real and positive
+\end{quote}
+Assuming that $\psi$ is normalized, the result will just be $\lambda^2$.
+But, in any event, the product of $\psi$ and its conjugate will be real
+and positive and so will the final result. Therefore $\langle A^2 \rangle
+\ge 0$.
+\\\\
+(ii) Let $B=e^{iA}$. $B^\dagger=\left(e^{iA}\right)^\dagger = e^{-iA^\dagger}$ 
+    which, since $A$ is Hermitian, $=e^{-iA}$. This makes $BB^\dagger
+    = e^{iA-iA}$. Since $A$ commutes with itself, this really is $1$ even
+    though $A$ is an operator. Therefore $B$ is unitary.
+\\\\\\
+{\bf Problem 5(b):}
+\\\\
+If $\psi$ is normalized, then $\langle \psi|\psi\rangle = 1$. If
+$U$ is unitary and $\phi=U|\psi\rangle$ then:
+\begin{quote}
+$
+    \langle \phi|\phi\rangle
+    = \langle U\psi|U\psi\rangle
+    \vspace{6pt}\\ \hspace*{27pt}
+    = \langle \psi|U^\dagger U\psi\rangle
+    \vspace{6pt}\\ \hspace*{27pt}
+    = \langle \psi|I\psi\rangle
+$
+\end{quote}
+Just as an example, here's how it works out with $U=e^{ix}$:
+\begin{quote}
+$
+    \int \psi^*(x) \psi(x)\,dx = 1,\;\; \phi(x) = e^{ix}\psi(x)
+    \vspace{6pt}\\
+    \int \phi^*(x) \phi(x)\,dx
+    = \int \left[e^{ix}\psi(x)\right]^* \left[e^{ix}\psi(x)\right]\,dx
+    \vspace{6pt}\\ \hspace*{78pt}
+    = \int \psi^*(x)e^{-ix}e^{ix}\psi(x)\,dx
+    \vspace{6pt}\\ \hspace*{78pt}
+    = \int \psi^*(x)\,(1)\,\psi(x)\,dx
+$
+\end{quote}
+For an operator that "sticks" to a function (like a derivative operator)
+it still works, but requires using the boundary conditions for the specific
+space to see all the details play out. For example using the product rule
+(integration by parts) as was done in problem 3.
+
+\pagebreak
+{\bf Problem 6:} 
+\\\\
+We are dealing with bound states, so the energy levels $E_n$ are discrete.
+We are given two different basis states: $\psi_1$ and $\psi_2$.
+\\\\
+(a) Show that the following expression is constant
+\begin{quote}
+    $\psi_1' \psi_2 - \psi_1 \psi_2'\;\;(1)$
+\end{quote}
+First solve the TDSE for $E_n$
+\begin{quote}
+$
+    -\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V(x)\psi
+        = E_n\psi
+  \vspace{6pt}\\
+    E_n =
+    -\frac{1}{\psi}\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V(x)
+    \;\;\;$(just divide through by $\psi$)$
+$
+\end{quote}
+Since both $\psi_1$ and $\psi_2$ have the {\it same} $E_n$
+\begin{quote}
+$
+    -\frac{1}{\psi_1}\frac{\hbar^2}{2m}\frac{\partial^2\psi_1}{\partial x^2}
+    +V(x)
+    =
+    -\frac{1}{\psi_2}\frac{\hbar^2}{2m}\frac{\partial^2\psi_2}{\partial x^2}
+    +V(x)
+  \vspace{10pt}\\
+    -\frac{1}{\psi_1}\frac{\hbar^2}{2m}\frac{\partial^2\psi_1}{\partial x^2}
+    =
+    -\frac{1}{\psi_2}\frac{\hbar^2}{2m}\frac{\partial^2\psi_2}{\partial x^2}
+    \;\;\; $(potentials cancel)$
+  \vspace{10pt}\\
+    \frac{1}{\psi_1}\frac{\partial^2\psi_1}{\partial x^2}
+    =
+    \frac{1}{\psi_2}\frac{\partial^2\psi_2}{\partial x^2}
+    \;\;\;$(divide through by all the constants)$
+  \vspace{10pt}\\
+    \psi_2\frac{\partial^2\psi_1}{\partial x^2}
+    =
+    \psi_1\frac{\partial^2\psi_2}{\partial x^2}
+    \;\;\;$(multiply through by $\psi_1\psi_2$)$
+  \vspace{10pt}\\
+    $(and switch notation :-)$
+  \vspace{10pt}\\
+    \psi_2\psi_1'' = \psi_1\psi_2'' \;\;(2)
+$
+\end{quote}
+Now, take the derivative of (1)
+\begin{quote}
+$
+    \frac{\partial}{\partial x}(\psi_1' \psi_2 - \psi_1 \psi_2')
+    = \psi_1''\psi_2+\psi_1'\psi_2' - \psi_1'\psi_2' - \psi_1\psi_2''
+    = \psi_1''\psi_2 - \psi_1\psi_2''
+$
+\end{quote}
+But from (2) we see that the derivative of (1) is zero, which means
+that (1) must be constant.
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+(b) We are talking about {\it bound states} here. So it seems like I can't
+    just say that $\psi_1$ and $\psi_2$ must go to zero at the endpoints
+    in order to be square integrable. For example, they might be defined
+    on, say, the interval $[0,1]$ in which case they would be square
+    integrable as long as they are everywhere finite.
+    \\\\
+    However, I suppose the concept of
+    a "bound" state implies that the wave function is restricted to within
+    the boundary, and hence must go to zero at the boundary.
+    So assuming that $\psi_1$ and $\psi_2$ {\it do} 
+    go to zero at the endpoints, then the only way that either of the
+    terms of (1) would not go to zero would be if one of the derivatives
+    increased without bound. That clearly couldn't happen,
+    {\it if the function is continuous}, or else the
+    function itself would never settle down to zero. {\it I suppose, if
+    you were to take an infinite well, and say that the initial condition
+    was constant inside the well but zero at the boundary, then you would
+    have an infinite derivative. But the price would be a discontinuous
+    wave function.}
+\\\\
+    In any event, for a physically realizable system it appears that
+    the argument works.
+\\\\
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+(b) The problem says "use the fact that bound state wave functions must
+    be square integrable" but I don't really understand this. Since bound
+    states might be on a finite interval, square integrability only means
+    that the wave functions must be "finite." For example, the boundary
+    conditions might be "periodic" and so the function would not have to
+    go to zero at the end points.
+\\\\
+    Perhaps square integrability is just a "stand in" for saying that
+    the function is in fact an element of the appropriate Hilbert space.
+    So it must be square integrable {\it and} it must have some
+    appropriate boundary conditions. Once the specific boundary conditions
+    are specified, then presumably the problem could be worked out
+    using integration by parts. But I don't know how to do it without
+    the specific BCs.
+\\\\
+    Maybe the idea is something like this ... A Sturm-Liouville
+    eigenvalue problem can be written as:
+    \begin{quote}
+    $
+    \frac{d}{dx} \left(p\frac{d\psi}{dx}\right) +q\psi+ \lambda \sigma\psi=0
+    $
+    \end{quote}
+    The TISE can be put into that form:
+    \begin{quote}
+    $
+    -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi + V(x)\psi = E\psi
+    \vspace{12pt}\\
+    \frac{d}{dx} \left(-\frac{\hbar^2}{2m}\frac{d\psi}{dx}\right)
+        +V(x)\psi -E \psi=0
+    \vspace{12pt}\\
+    \frac{d}{dx} \left(\frac{\hbar^2}{2m}\frac{d\psi}{dx}\right)
+        -V(x)\psi+ E \psi=0
+    $
+    \vspace{12pt}\\
+    Where:
+        \begin{quote}
+        $
+        p = \frac{\hbar^2}{2m},\; $(real, positive)$
+        \vspace{6pt}\\
+        q = V(x),\; $(real)$
+        \vspace{6pt}\\
+        \lambda = E
+        \vspace{6pt}\\
+        \sigma = 1\; $(real, positive)$
+        $
+        \end{quote}
+    \end{quote}
+I imagine that for any Hilbert space we are going to be concerned with, 
+$\psi$ will have {\it some}
+legitimate Sturm-Liouville boundary conditions (probably $\psi=0$
+or $\psi$ and its derivative periodic).
+So the self-adjoint property of the Sturm-Liouville operator guarantees that
+either $\psi$ or its derivative will disappear at the boundaries without
+knowing the exact details of the problem.
+\\\\
+Somehow I suspect that this is not what you had in mind, and I suppose
+that I've probably missed the point of part (b).
+
+\pagebreak
+(c) From part (b) we have that: $\psi_1'\psi_2 - \psi_1\psi_2'=0$.
+    Starting from there ...
+\begin{quote}
+$
+    \psi_1'\psi_2 = \psi_1\psi_2'
+  \vspace{10pt}\\
+    \frac{1}{\psi_1}\psi_1' = \frac{1}{\psi_2}\psi_2'
+    \;\;$(dividing through by $\psi_1\psi_2$)$
+  \vspace{10pt}\\
+    \frac{1}{\psi_1}\frac{d\psi_1}{dx} = \frac{1}{\psi_2}\frac{d\psi_2}{dx}
+    \;\;$(switching notation again)$
+  \vspace{10pt}\\
+    $Now I'm going to  multiply through by the infinitesimal $dx$. I wouldn't
+    be able to do that in a math class, but I hope it's OK here.$
+  \vspace{10pt}\\
+    \frac{1}{\psi_1}d\psi_1 = \frac{1}{\psi_2}d\psi_2
+  \vspace{10pt}\\
+    \ln|\psi_1| + c_1 = \ln|\psi_2| + c_2
+    \;\; $(integrate both sides)$
+  \vspace{10pt}\\
+    \ln|\psi_1| = \ln|\psi_2| + K
+    \;\; $(lump together the constants on the right)$
+  \vspace{10pt}\\
+    $Now take the exponential function of both sides and work it out ...$
+  \vspace{10pt}\\
+    e^{\ln|\psi_1|} = e^{\ln|\psi_2| + K}
+    \Rightarrow
+    e^{\ln|\psi_1|} = e^Ke^{\ln|\psi_2|}
+    \Rightarrow
+    \psi_1 = e^K\psi_2
+$
+\end{quote}
+Therefore $\psi_1$ is equal to $\psi_2$ times the constant $e^K$,
+and when normalized they must be the same function.
+
+\pagebreak
+{\bf Problem 7:} 
+\\\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+(a) The first thing I'm going to do is rewrite $\psi$ (and $\psi^*$) as:
+\begin{quote}
+$
+    \psi=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \phi(p)\, \frac{\partial}{\partial p}
+        \left(\frac{\hbar}{ix} e^{ipx/h}\right) dp,
+    \;\;\psi^* =
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \phi^*(p)\, \frac{\partial}{\partial p}
+        \left(\frac{-\hbar}{ix} e^{-ipx/h}\right) dp
+$
+\end{quote}
+All I've done is to rewrite the exponential factor as the derivative
+of its anti-derivative. The next step is to use integration by parts
+to "switch" the derivative to $\phi$. This works since the boundary
+condition on $\phi$ will cause the unwanted term to "disappear" during
+the integration. I hope I don't have to write this all out. Exactly
+the same technique was worked out in detail in Problem 3. The result is:
+\begin{quote}
+$
+\vspace{-6pt}\\
+    \psi=-\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi}{dp}\frac{\hbar}{ix} e^{ipx/h} dp,
+    \;\;\psi^* =
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi^*}{dp} \frac{\hbar}{ix} e^{-ipx/h} dp
+$
+\end{quote}
+We are given that $(\Delta x)^2=\langle x^2\rangle$ which means that:
+\begin{quote}
+$
+    (\Delta x)^2= \langle \psi^*|x^2|\psi\rangle
+    \vspace{12pt}\\
+    \frac{\partial}{\partial x} \left[(\Delta x)^2\right]=
+    \left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi^*}{dp} \frac{\hbar}{ix} e^{-ipx/h} dp
+    \right)
+    x^2
+    \left(
+    -\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi}{dp}\frac{\hbar}{ix} e^{ipx/h} dp
+    \right)
+    \vspace{12pt}\\
+    $ The two integrations are with respect to $p$ so the two $x$ in
+    the denominators of the integrations are constants. They can be
+    moved out of the integrations to cancel the $x^2$ in the middle:$
+    \vspace{12pt}\\
+    \frac{\partial}{\partial x} \left[(\Delta x)^2\right]=
+    \left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi^*}{dp} \frac{\hbar}{i} e^{-ipx/h} dp
+    \right)
+    \left(
+    -\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \frac{d\phi}{dp}\frac{\hbar}{i} e^{ipx/h} dp
+    \right)
+    \vspace{12pt}\\
+    $Now I'll just clean things up a bit, canceling the one minus sign
+    with the two $i$ and moving the $\hbar$.$
+    \vspace{12pt}\\
+    \frac{\partial}{\partial x} \left[(\Delta x)^2\right]=
+    \left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \hbar\, \frac{d\phi^*}{dp}\, e^{-ipx/h} dp
+    \right)
+    \left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \hbar\, \frac{d\phi}{dp}\, e^{ipx/h} dp
+    \right)
+    \vspace{12pt}\\
+    (\Delta x)^2=
+    \int_{-\infty}^{\infty}\left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \hbar\, \frac{d\phi^*}{dp}\, e^{-ipx/h} dp
+    \right)
+    \left(
+    \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}
+        \hbar\, \frac{d\phi}{dp}\, e^{ipx/h} dp
+    \right)
+    dx
+\vspace{-4pt}\\
+$
+\end{quote}
+Now I'm integrating the product of two transforms which are
+conjugates of each other, and I believe I can apply a particular form of
+the convolution theorem, which apparently is sometimes called
+{\it Parseval's identity}. (See for example, {\it Applied Differential
+Equations, Richard Haberman, Fourth Edition,} starting
+at the bottom of page 467.) I believe this will allow me to essentially
+multiply the two transforms together and cancel the normalization constant.
+Then the exponentials will cancel each other, giving the desired result.
+Unfortunately, I have not quite been able to figure
+out in detail how this convolution works ... 
+
+\pagebreak
+So for now I'm going to assume the
+result and hope for partial credit. Note that if this works for
+$\Delta x$ then the whole process will be exactly the same for
+$\Delta p$. The only difference is the sign of the exponential and that
+washes out because we're also taking the conjugates.
+\\\\
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+(a) 
+We established (in class) that $\hat{p}$ in the position basis
+is $-i\hbar\frac{\partial}{\partial x}$ and (in problem 3) that
+$\hat{x}$ in the momentum basis is $i\hbar\frac{\partial}{\partial p}$.
+It is given in the problem that $(\Delta x)^2=\langle x^2\rangle$ and
+$(\Delta p)^2=\langle p^2\rangle$.
+\\\\
+It follows that:
+\begin{quote}
+$
+    (\Delta x)^2=\langle x^2\rangle =
+    \int_{-\infty}^{\infty}
+        \phi^*\,\left(i\hbar\frac{\partial}{\partial p}\right)^2\phi\,dp
+    \vspace{12pt}\\
+    = \int_{-\infty}^{\infty}
+     \phi^*\,i^2\hbar^2\left(\frac{\partial}{\partial p}\right)^2\phi\,dp
+    \vspace{12pt}\\
+    = -\hbar^2\int_{-\infty}^{\infty}
+     \phi^*
+        \frac{\partial}{\partial p}
+        \frac{\partial}{\partial p}\phi\,dp
+    \vspace{12pt}\\
+    $Let $\hat{A}=\frac{\partial}{\partial p}$ then (in this space)
+    $\hat{A}^\dagger=-\frac{\partial}{\partial p}$. We
+    concluded on your blackboard the other day that this was true
+    (although you seemed to disapprove of
+    my calling it the "adjoint"), but I'm going with that, so we have:$
+    \vspace{12pt}\\
+    = -\hbar^2\int_{-\infty}^{\infty}
+     \phi^*
+        \frac{\partial}{\partial p}
+        \frac{\partial}{\partial p}\phi\,dp
+    =\langle\phi|\hat{A}\hat{A}\phi\rangle
+    = \langle\hat{A}^\dagger\phi|\hat{A}\phi\rangle
+    = -\hbar^2\int_{-\infty}^{\infty}
+        \left(-\frac{\partial}{\partial p}\right)
+        \phi^*
+        \frac{\partial}{\partial p}\phi\,dp
+    \vspace{12pt}\\
+    = \int_{-\infty}^{\infty}
+        h\frac{\partial}{\partial p}
+        \phi^*
+        h\frac{\partial}{\partial p}\phi\,dp
+$
+\end{quote}
+The same process works for $(\Delta p)^2$:
+\begin{quote}
+$
+    (\Delta p)^2=\langle p^2\rangle =
+    \int_{-\infty}^{\infty}
+        \psi^*\,\left(-i\hbar\frac{\partial}{\partial x}\right)^2\psi\,dp
+    \vspace{12pt}\\
+    =\int_{-\infty}^{\infty}
+        \psi^*\,(-1)^2\,i^2\,\hbar^2
+        \frac{\partial}{\partial x}
+        \frac{\partial}{\partial x}
+        \psi\,dp
+    =-\hbar^2\int_{-\infty}^{\infty}\psi^*
+        \frac{\partial}{\partial x}
+        \frac{\partial}{\partial x}
+        \psi\,dp
+    =-\hbar^2\int_{-\infty}^{\infty}
+        \left(-\frac{\partial}{\partial x}\right)
+        \psi^*
+        \frac{\partial}{\partial x}
+        \psi\,dp
+    \vspace{12pt}\\
+    \int_{-\infty}^{\infty}\psi^*
+        \hbar\frac{\partial}{\partial x}
+        \hbar\frac{\partial}{\partial x} \psi\,dp
+$
+\end{quote}
+\vspace{6pt}
+I guess if my "calculus skills" were better I would know the right
+thing to do with integrals and wouldn't have to resort to writing
+the inner product in Dirac notation, but I think the argument above
+is valid.
+
+\pagebreak
+(b) Given:
+\begin{quote}
+$
+    \int_{-\infty}^{\infty}\bigg|
+        \frac{x\psi}{a(\Delta x)^2} + \frac{\partial\psi}{\partial x}
+        \bigg|^2 dx \ge 0 
+\vspace{12pt}\\
+    $Expand the modulus squared:$
+\vspace{12pt}\\
+    \int_{-\infty}^{\infty}
+    \left(
+    \frac{x\psi^*}{a(\Delta x)^2} + \frac{\partial\psi^*}{\partial x}
+    \right)
+    \left(
+    \frac{x\psi}{a(\Delta x)^2} + \frac{\partial\psi}{\partial x}
+    \right) dx \ge 0
+\vspace{12pt}\\
+    \int_{-\infty}^{\infty}
+    \left(
+        \frac{x\psi^*}{a(\Delta x)^2} \frac{x\psi}{a(\Delta x)^2}
+        + \frac{x\psi^*}{a(\Delta x)^2} \frac{\partial\psi}{\partial x}
+        + \frac{x\psi}{a(\Delta x)^2} \frac{\partial\psi^*}{\partial x}
+        + \frac{\partial\psi^*}{\partial x} \frac{\partial\psi}{\partial x}
+    \right) dx \ge 0
+\vspace{12pt}\\
+    $Rearrange things and integrate the first term,
+    recognizing that the denominator is
+    a constant, and the numerator is by definition $\langle x^2\rangle$
+    which we know to be $(\Delta x)^2:
+\vspace{12pt}\\
+    \int_{-\infty}^{\infty} 
+        \frac{1}{a(\Delta x)^2} \frac{\psi^*x^2\psi}{a(\Delta x)^2}\,dx
+    + \int_{-\infty}^{\infty}
+        x\left(\psi^*\frac{\partial\psi}{\partial x}
+        +\psi\frac{\partial\psi^*}{\partial x}\right)\,dx
+    + \int_{-\infty}^{\infty}
+        \frac{\partial\psi^*}{\partial x} \frac{\partial\psi}{\partial x}\,dx
+    \ge 0
+\vspace{12pt}\\
+        \frac{1}{a(\Delta x)^2} \frac{(\Delta x)^2}{a(\Delta x)^2}
+    + \int_{-\infty}^{\infty}
+        x\left(\psi^*\frac{\partial\psi}{\partial x}
+        +\psi\frac{\partial\psi^*}{\partial x}\right)\,dx
+    + \int_{-\infty}^{\infty}
+        \frac{\partial\psi^*}{\partial x} \frac{\partial\psi}{\partial x}\,dx
+    \ge 0
+\vspace{12pt}\\
+        \frac{1}{a^2(\Delta x)^2}
+    + \int_{-\infty}^{\infty}
+        x\left(\psi^*\frac{\partial\psi}{\partial x}
+        +\psi\frac{\partial\psi^*}{\partial x}\right)\,dx
+    + \int_{-\infty}^{\infty}
+        \frac{\partial\psi^*}{\partial x} \frac{\partial\psi}{\partial x}\,dx
+    \ge 0
+\vspace{12pt}\\
+    $Multiply the last term by $\hbar^2/\hbar^2$ to get $(\Delta p)^2:
+\vspace{12pt}\\
+        \frac{1}{a^2(\Delta x)^2}
+    + \int_{-\infty}^{\infty}
+        x\left(\psi^*\frac{\partial\psi}{\partial x}
+        +\psi\frac{\partial\psi^*}{\partial x}\right)\,dx
+    + \frac{1}{\hbar^2}\int_{-\infty}^{\infty}
+        \hbar\frac{\partial\psi^*}{\partial x}
+        \hbar\frac{\partial\psi}{\partial x}\,dx
+    \ge 0
+\vspace{12pt}\\
+        \frac{1}{a^2(\Delta x)^2}
+    + \int_{-\infty}^{\infty}
+        x\left(\psi^*\frac{\partial\psi}{\partial x}
+        +\psi\frac{\partial\psi^*}{\partial x}\right)\,dx
+    + \frac{1}{\hbar^2}(\Delta p)^2
+    \ge 0
+\vspace{12pt}\\
+    $Multiply through by $(\Delta x)^2$ and rearrange middle term:$
+\vspace{12pt}\\
+        \frac{1}{a^2}
+    + (\Delta x)^2 \int_{-\infty}^{\infty}
+        x\frac{\partial}{\partial x}(\psi^*\psi)\,dx
+    + \frac{1}{\hbar^2}(\Delta p)^2(\Delta x)^2
+    \ge 0
+$
+\end{quote}
+{\it I'm stuck! I can't figure out what to do with the middle term.
+I'm going to move on and try to work on part (c).}
+
+\pagebreak
+(c) Given:
+$
+    \Delta x \Delta p \ge \hbar \frac{\sqrt{a-1}}{a},\;
+$
+show that:
+$
+    \Delta x \Delta p \ge \frac{\hbar}{2}
+$
+\vspace{12pt}\\
+Consider the factor $\sqrt{a-1}/a$.
+Since $\Delta x$, $\Delta p$, and $\hbar$ are real and positive
+it must be true that $a\ge 1$. Take the derivative:
+\begin{quote}
+$
+    \frac{d}{da}\frac{\sqrt{a-1}}{a}
+    \vspace{12pt}\\
+    = \frac{d}{da}\left( a^{-1} (a-1)^{1/2} \right)
+    \vspace{12pt}\\
+    = (-1)a^{-2}(a-1)^{1/2} + a^{-1} \frac{1}{2}(a-1)^{-1/2}
+    \vspace{12pt}\\
+    = -\frac{\sqrt{a-1}}{a^2} + \frac{1}{2a\sqrt{a-1}}
+$
+\end{quote}
+On the open interval $(1,+\infty)$ the
+derivative has a single zero at $a=2$ so the function can only
+change direction at that point. Now look at the end points:
+\vspace{6pt}\\
+At $a=1$ the factor is clearly zero.
+\vspace{6pt}\\
+As $a\rightarrow\infty$ I think it's pretty obvious that the numerator
+only grows with the square root of the denominator, and so the limit
+is zero. But I suppose it's best to check with l'Hopital's rule:
+\begin{quote}
+$
+    \lim_{a\to \infty}\frac{f(a)}{g(a)} =
+    \lim_{a\to \infty}\frac{f'(a)}{g'(a)}
+    \vspace{12pt}\\
+    = \lim_{a\to \infty} \frac{\frac{d}{da}\sqrt{a-1}} {\frac{d}{da} a}
+    \vspace{12pt}\\
+    = \lim_{a\to \infty}\frac{\frac{1}{2\sqrt{a-1}}}{1}
+$
+    \vspace{12pt}\\
+    Now it's clear that the numerator goes to zero.
+\end{quote}
+\vspace{6pt}
+So, $\frac{\sqrt{a-1}}{a}$ is zero at both endpoints and has a maximum
+when $a=2$, where $\frac{\sqrt{2-1}}{2}=\frac{1}{2}$.
+\\\\
+The value of the uncertainty is then limited by:
+$
+    \Delta x \Delta p \ge \hbar\frac{1}{2}
+$
+and the uncertainty principle is verified.
+
+\pagebreak
+{\bf Problem 8} 
+\\\\
+(a) Let me start by numbering the three formulae given, so that I can
+refer back to them:
+\begin{quote}
+$
+    \vspace{-6pt}\\
+    (1)\;\;\sum_{a'}
+        \langle a|x|a'\rangle
+        \langle a'|p|b\rangle
+    - \sum_{a'}
+        \langle a|p|a'\rangle
+        \langle a'|x|b\rangle
+    = i\hbar\langle a|b\rangle
+\vspace{12pt}\\
+    (2)\;\;\sum_{a'}\left(
+        x_{aa'}\, p_{a'b} - p_{aa'}\, x_{a'b}
+        \right) = i\hbar\delta_{ab}
+\vspace{12pt}\\
+    (3)\;\;\sum_{a}\sum_{a'}
+        \langle a|x|a'\rangle
+        \langle a'|p|a\rangle
+    - \sum_{a}\sum_{a'}
+        \langle a|p|a'\rangle
+        \langle a'|x|a\rangle
+    = i\hbar N
+$
+\end{quote}
+Starting with formula (1), the expression $\langle a|x|a'\rangle$
+simply picks out the $X$ matrix element $x_{aa'}$. So what we are doing
+here is adding up all the products $x_{aa'}\,p_{a'b}$ and then subtracting
+from that all the products $p_{aa'}\,x_{a'b}$. The first summation
+multiplies row $a$ of matrix $X$ with column $b$ of matrix $P$. The
+second summation multiplies row $a$ of matrix $P$ with column $b$ of matrix
+$X$. The second inner product is then subtracted from the first.
+\\\\
+Formula (2) does the same thing except that it only uses one summation
+and subtracts each element individually, instead of adding up the two
+inner products and subtracting them as a whole. But that doesn't matter
+since the sum of a difference is the difference of the sums.
+\\\\
+Formula (3) subtracts the trace of $PX$ from the trace of $XP$. I guess
+the easiest way to see this is to recognize
+the identity operator: 
+\begin{quote}
+$
+    \sum_{a'}|a'\rangle \langle a'| = \hat{I}
+$
+\end{quote}
+which is embedded in the formula. You can factor out $\hat{I}$ leaving:
+\begin{quote}
+$
+    \sum_{a} 
+    \langle a|x p|a\rangle
+    - \sum_{a} \langle a|p x|a\rangle
+    = \sum_{a} (xp)_{aa} - \sum_{a} (px)_{aa}
+    = Tr(XP) - Tr(PX)
+$
+\end{quote}
+(b) Show that the LHS can be made zero if $N$ is finite. I assume that we're
+talking about the LHS of formula (3).
+You can take the trace of $AB$ (i) by multiplying the rows of
+$A$ with the columns of $B$ or (ii) by multiplying the columns of $A$
+with the rows of $B$:
+\begin{quote}
+$
+    (i) \sum_{m}\sum_{n} a_{mn}\,b_{nm}\;\;=\;\;
+    (ii) \sum_{m}\sum_{n} a_{nm}\,b_{mn}\;\;=\;\;
+    (iii) \sum_{m}\sum_{n} b_{mn}\,a_{nm}
+$
+\end{quote}
+But (ii) is
+the same as (iii) which is the trace of $BA$. Therefore, in formula (1)
+Tr(XP) = Tr(PX) and their difference is zero. This argument uses
+discrete summation variables and would not apply - as it stands -
+if the variables were continuous. So it does not prove anything, one way
+or another, about continuous matrices. {\it I am assuming that the
+matrix elements are "c-numbers" and hence commute. The argument I would
+make for that is: The trace is basis-independent. Since the matrix is
+hermitian it can be diagonalized. In the diagonal basis the entries are
+constants. So any operators inside the matrix can ultimately be eliminated
+in the trace.
+}
+
+\end{document}

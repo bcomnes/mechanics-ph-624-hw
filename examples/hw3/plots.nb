@@ -1,0 +1,319 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     11829,        310]
+NotebookOptionsPosition[     11052,        278]
+NotebookOutlinePosition[     11445,        295]
+CellTagsIndexPosition[     11402,        292]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"/Users/bret/SparkleShare/qm2/qm2-hw3\"\>"], "Output",
+ CellChangeTimes->{3.572234061028037*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"a", "-", 
+      RowBox[{
+       RowBox[{"Tan", "[", 
+        RowBox[{"a", " ", "\[Lambda]"}], " ", "]"}], "/", "\[Lambda]"}]}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Lambda]", ",", "0", ",", 
+       RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameTicks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Flatten", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", "x", "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", 
+             RowBox[{"8", "\[Pi]"}], ",", 
+             RowBox[{"\[Pi]", "/", "2"}]}], "}"}]}], "]"}], "]"}], ",", 
+        "Automatic"}], "}"}]}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\[Lambda]", ",", "L"}], "}"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<LofLambda.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.571489028938733*^9, 3.57148911401519*^9}, {
+   3.572233247882311*^9, 3.572233271827837*^9}, {3.5722333094368343`*^9, 
+   3.572233341766239*^9}, {3.572233384332658*^9, 3.572233434703712*^9}, 
+   3.572233635787463*^9, {3.5722336708114977`*^9, 3.572233673709244*^9}, {
+   3.572233741861348*^9, 3.572233762719222*^9}, {3.572233815882946*^9, 
+   3.572233853057251*^9}, {3.572233901188056*^9, 3.572233937310484*^9}, {
+   3.5722339723839417`*^9, 3.572234024458103*^9}, {3.572234065612103*^9, 
+   3.572234096543357*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 1.04, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], 1}, 0, 10}}, Typeset`size$$ = {
+    360., {134., 139.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`a$16502$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`a$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$16502$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[$CellContext`a$$ - 
+        Tan[$CellContext`a$$ $CellContext`\[Lambda]]/$CellContext`\[Lambda], \
+{$CellContext`\[Lambda], 0, 2 Pi}, Frame -> True, FrameTicks -> {
+          Flatten[
+           Table[{$CellContext`x}, {$CellContext`x, 0, 8 Pi, Pi/2}]], 
+          Automatic}, FrameLabel -> {$CellContext`\[Lambda], $CellContext`L}],
+       "Specifications" :> {{{$CellContext`a$$, 1}, 0, 10}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{403., {176., 182.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5714890801999607`*^9, 3.571489114590075*^9, {3.572233256937011*^9, 
+   3.5722332728219833`*^9}, 3.572233342492455*^9, {3.5722333849681187`*^9, 
+   3.572233388626514*^9}, 3.5722336373457527`*^9, 3.572233674415244*^9, {
+   3.572233743189937*^9, 3.572233767947929*^9}, {3.572233827206024*^9, 
+   3.57223385378517*^9}, {3.572233932012735*^9, 3.572233938009783*^9}, {
+   3.5722339770679502`*^9, 3.5722339869704733`*^9}, 3.572234025922986*^9, 
+   3.572234097439488*^9}],
+
+Cell[BoxData["\<\"LofLambda.pdf\"\>"], "Output",
+ CellChangeTimes->{
+  3.5714890801999607`*^9, 3.571489114590075*^9, {3.572233256937011*^9, 
+   3.5722332728219833`*^9}, 3.572233342492455*^9, {3.5722333849681187`*^9, 
+   3.572233388626514*^9}, 3.5722336373457527`*^9, 3.572233674415244*^9, {
+   3.572233743189937*^9, 3.572233767947929*^9}, {3.572233827206024*^9, 
+   3.57223385378517*^9}, {3.572233932012735*^9, 3.572233938009783*^9}, {
+   3.5722339770679502`*^9, 3.5722339869704733`*^9}, 3.572234025922986*^9, 
+   3.572234101303516*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"a", "-", 
+      RowBox[{
+       RowBox[{"Tan", "[", 
+        RowBox[{"a", " ", "\[Lambda]"}], " ", "]"}], "/", "\[Lambda]"}]}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "0", ",", 
+       RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameTicks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Flatten", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", "x", "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", 
+             RowBox[{"8", "\[Pi]"}], ",", 
+             RowBox[{"\[Pi]", "/", "2"}]}], "}"}]}], "]"}], "]"}], ",", 
+        "Automatic"}], "}"}]}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "L"}], "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+   
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Lambda]", ",", "1"}], "}"}], ",", "0", ",", "10"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<Lofa.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.572234150225038*^9, 3.572234171872994*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 2.56, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 1}, 0, 10}}, Typeset`size$$ = {
+    360., {134., 139.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Lambda]$16824$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Lambda]$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$16824$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[$CellContext`a - 
+        Tan[$CellContext`a \
+$CellContext`\[Lambda]$$]/$CellContext`\[Lambda]$$, {$CellContext`a, 0, 2 Pi},
+         Frame -> True, FrameTicks -> {
+          Flatten[
+           Table[{$CellContext`x}, {$CellContext`x, 0, 8 Pi, Pi/2}]], 
+          Automatic}, FrameLabel -> {$CellContext`a, $CellContext`L}], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 1}, 0, 10}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{403., {176., 182.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.572234173743183*^9}],
+
+Cell[BoxData["\<\"Lofa.pdf\"\>"], "Output",
+ CellChangeTimes->{3.572234174248128*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"a", "-", 
+      RowBox[{
+       RowBox[{"Tan", "[", 
+        RowBox[{"\[Lambda]", " ", "a"}], "]"}], "/", "\[Lambda]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "0", ",", "2.22"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Lambda]", ",", "4.26"}], "}"}], ",", "0", ",", "10"}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5714891583907423`*^9, 3.5714891654079323`*^9}, {
+  3.572233277130206*^9, 3.572233301806481*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Lambda]$$ = 4.26, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Lambda]$$], 4.26}, 0, 10}}, Typeset`size$$ = {
+    360., {107., 112.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Lambda]$965$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Lambda]$$ = 4.26}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Lambda]$$, $CellContext`\[Lambda]$965$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[$CellContext`a - 
+        Tan[$CellContext`\[Lambda]$$ \
+$CellContext`a]/$CellContext`\[Lambda]$$, {$CellContext`a, 0, 2.22}], 
+      "Specifications" :> {{{$CellContext`\[Lambda]$$, 4.26}, 0, 10}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{403., {149., 155.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.5714891661150217`*^9, 3.5722333024317007`*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 656},
+WindowMargins->{{63, Automatic}, {Automatic, 213}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit) (October 5, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 104, 2, 27, "Input"],
+Cell[686, 26, 113, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[836, 32, 1775, 44, 88, "Input"],
+Cell[2614, 78, 2265, 44, 375, "Output"],
+Cell[4882, 124, 536, 8, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5455, 137, 1293, 37, 88, "Input"],
+Cell[6751, 176, 1868, 38, 375, "Output"],
+Cell[8622, 216, 85, 1, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8744, 222, 590, 17, 27, "Input"],
+Cell[9337, 241, 1699, 34, 321, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
